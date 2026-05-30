@@ -1,556 +1,209 @@
-/* ============================================
-   rephysics — style.css
-   Estética: físico teórico · preto & branco · verde-musgo
-   ============================================ */
-
-:root {
-  --bg:          #0d0d0b;
-  --bg-alt:      #111110;
-  --surface:     #181815;
-  --border:      #2a2a26;
-  --accent:      #6b8c6e;   /* verde-musgo */
-  --accent-dim:  #4a6b4d;
-  --text:        #d4d0c8;
-  --text-muted:  #6b6860;
-  --text-strong: #f0ece0;
-  --mono:        'Inconsolata', monospace;
-  --serif:       'EB Garamond', Georgia, serif;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ---- SCROLLBAR ---- */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-/* ---- SELECTION ---- */
-::selection {
-  background: var(--accent-dim);
-  color: var(--text-strong);
-}
-
-/* ============================================
-   HEADER
-   ============================================ */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(13, 13, 11, 0.92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
-}
-
-.header-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.logo {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  text-decoration: none;
-}
-
-.logo-symbol {
-  font-family: var(--serif);
-  font-size: 1.6rem;
-  color: var(--accent);
-  line-height: 1;
-}
-
-.logo-name {
-  font-family: var(--mono);
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: var(--text-strong);
-  letter-spacing: 0.08em;
-}
-
-nav {
-  display: flex;
-  gap: 2rem;
-}
-
-nav a {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  transition: color 0.2s;
-}
-
-nav a:hover {
-  color: var(--accent);
-}
-
-/* ============================================
-   HERO
-   ============================================ */
-.hero {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 6rem 2rem 5rem;
-  position: relative;
-  border-bottom: 1px solid var(--border);
-}
-
-.hero-label {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  color: var(--accent);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 1.2rem;
-}
-
-.hero-title {
-  font-family: var(--serif);
-  font-size: clamp(3.5rem, 8vw, 6.5rem);
-  font-weight: 400;
-  color: var(--text-strong);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.5rem;
-}
-
-.hero-sub {
-  max-width: 520px;
-  color: var(--text);
-  font-size: 1.15rem;
-  margin-bottom: 2.5rem;
-  font-style: italic;
-}
-
-.hero-links {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn {
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
-  padding: 0.6rem 1.4rem;
-  border: 1px solid var(--accent);
-  background: var(--accent);
-  color: var(--bg);
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s;
-}
-
-.btn:hover {
-  background: transparent;
-  color: var(--accent);
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--text-muted);
-  border-color: var(--border);
-}
-
-.btn-ghost:hover {
-  border-color: var(--text-muted);
-  color: var(--text);
-  background: transparent;
-}
-
-.hero-eq {
-  position: absolute;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--serif);
-  font-size: 1.05rem;
-  color: var(--border);
-  writing-mode: vertical-rl;
-  letter-spacing: 0.05em;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* ============================================
-   SECTIONS
-   ============================================ */
-.section {
-  border-bottom: 1px solid var(--border);
-}
-
-.section-alt {
-  background: var(--bg-alt);
-}
-
-.section-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 5rem 2rem;
-}
-
-.section-title {
-  font-family: var(--serif);
-  font-size: 1.7rem;
-  font-weight: 400;
-  color: var(--text-strong);
-  margin-bottom: 2.5rem;
-  letter-spacing: -0.01em;
-}
-
-.accent {
-  color: var(--accent);
-  margin-right: 0.6rem;
-  font-style: italic;
-}
-
-.section-desc {
-  color: var(--text-muted);
-  font-style: italic;
-  margin-bottom: 2rem;
-  font-size: 1rem;
-}
-
-/* ============================================
-   PROSE
-   ============================================ */
-.prose p {
-  max-width: 620px;
-  margin-bottom: 1.2rem;
-  color: var(--text);
-}
-
-.prose strong {
-  color: var(--text-strong);
-  font-weight: 500;
-}
-
-/* ============================================
-   CARD GRID (anotações)
-   ============================================ */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5px;
-  background: var(--border);
-  border: 1px solid var(--border);
-}
-
-.card {
-  background: var(--bg);
-  padding: 1.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  transition: background 0.2s;
-}
-
-.section-alt .card {
-  background: var(--bg-alt);
-}
-
-.card:hover {
-  background: var(--surface);
-}
-
-.card-tag {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.card h3 {
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  font-weight: 400;
-  color: var(--text-strong);
-}
-
-.card p {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  flex: 1;
-}
-
-.card-link {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--accent-dim);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  margin-top: 0.4rem;
-  transition: color 0.2s;
-}
-
-.card-link:hover {
-  color: var(--accent);
-}
-
-/* ============================================
-   TABLE (listas)
-   ============================================ */
-.list-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.98rem;
-}
-
-.list-table th {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  text-align: left;
-  padding: 0.7rem 1rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.list-table td {
-  padding: 1rem 1rem;
-  border-bottom: 1px solid var(--border);
-  color: var(--text);
-  vertical-align: middle;
-}
-
-.list-table tr:last-child td {
-  border-bottom: none;
-}
-
-.list-table tr:hover td {
-  background: var(--surface);
-}
-
-.mono {
-  font-family: var(--mono);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.muted {
-  color: var(--border);
-}
-
-.badge {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  padding: 0.2rem 0.65rem;
-  border-radius: 2px;
-}
-
-.badge-done {
-  background: rgba(107, 140, 110, 0.15);
-  color: var(--accent);
-  border: 1px solid var(--accent-dim);
-}
-
-.badge-wip {
-  background: rgba(160, 130, 80, 0.1);
-  color: #a08050;
-  border: 1px solid #6b5530;
-}
-
-.badge-plan {
-  background: var(--surface);
-  color: var(--text-muted);
-  border: 1px solid var(--border);
-}
-
-/* ============================================
-   PROJETOS
-   ============================================ */
-.project-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid var(--border);
-}
-
-.project-item {
-  padding: 2rem;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  transition: background 0.2s;
-}
-
-.project-item:last-child {
-  border-bottom: none;
-}
-
-.project-item:hover {
-  background: var(--surface);
-}
-
-.project-header {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.project-name {
-  font-family: var(--serif);
-  font-size: 1.2rem;
-  color: var(--text-strong);
-  font-weight: 400;
-}
-
-.tag {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
-  border: 1px solid var(--border);
-  padding: 0.15rem 0.55rem;
-}
-
-.project-item > p {
-  font-size: 0.97rem;
-  color: var(--text-muted);
-  max-width: 580px;
-}
-
-/* ============================================
-   TODO LIST
-   ============================================ */
-.todo-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid var(--border);
-}
-
-.todo-list li {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 1.1rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-  font-size: 1rem;
-  color: var(--text);
-  transition: background 0.15s;
-}
-
-.todo-list li:last-child {
-  border-bottom: none;
-}
-
-.todo-list li:hover {
-  background: var(--surface);
-}
-
-.todo-icon {
-  font-family: var(--mono);
-  color: var(--border);
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-
-/* ============================================
-   FOOTER
-   ============================================ */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 2rem 0;
-}
-
-.footer-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-inner .mono {
-  font-size: 0.78rem;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.footer-links a {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  text-decoration: none;
-  letter-spacing: 0.05em;
-  transition: color 0.2s;
-}
-
-.footer-links a:hover {
-  color: var(--accent);
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-@media (max-width: 700px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-  }
-
-  nav {
-    gap: 1.2rem;
-    flex-wrap: wrap;
-  }
-
-  .hero-eq {
-    display: none;
-  }
-
-  .hero {
-    padding: 3.5rem 1.5rem 3rem;
-  }
-
-  .section-inner {
-    padding: 3.5rem 1.5rem;
-  }
-
-  .list-table {
-    font-size: 0.85rem;
-  }
-
-  .list-table th,
-  .list-table td {
-    padding: 0.7rem 0.5rem;
-  }
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rephysics</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-symbol">∂</span>
+        <span class="logo-name">rephysics</span>
+      </div>
+      <nav>
+        <a href="#sobre">sobre</a>
+        <a href="#anotacoes">anotações</a>
+        <a href="#listas">listas</a>
+        <a href="#projetos">projetos</a>
+        <a href="#quero-fazer">em progresso</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">física teórica · anotações · projetos</p>
+      <h1 class="hero-title">rephysics</h1>
+      <p class="hero-sub">
+        Este é meu espaço pessoal — onde documento o que aprendo, resolvo problemas
+        e registro ideias. Uma espécie de caderno aberto sobre física.
+      </p>
+      <div class="hero-links">
+        <a href="https://instagram.com/rephysics" target="_blank" class="btn">→ instagram</a>
+        <a href="https://github.com/rephysics" target="_blank" class="btn btn-ghost">github</a>
+      </div>
+    </div>
+    <div class="hero-eq">
+      <span>∇²ψ + <sup>2m</sup>/<sub>ℏ²</sub>(E − V)ψ = 0</span>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="section">
+    <div class="section-inner">
+      <h2 class="section-title"><span class="accent">§1</span> Sobre</h2>
+      <div class="prose">
+        <p>
+          Estudante de física, interessado em mecânica quântica, relatividade e física
+          matemática. Mantenho o <strong>@rephysics</strong> no Instagram como forma de
+          tornar física mais acessível — e este repositório como registro do que estudo.
+        </p>
+        <p>
+          Aqui você encontra minhas anotações de aula, resoluções de listas, projetos
+          computacionais e coisas que quero explorar futuramente.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANOTAÇÕES -->
+  <section id="anotacoes" class="section section-alt">
+    <div class="section-inner">
+      <h2 class="section-title"><span class="accent">§2</span> Anotações</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-tag">mecânica quântica</div>
+          <h3>Equação de Schrödinger</h3>
+          <p>Derivação, interpretação probabilística e soluções para poço quadrado infinito.</p>
+          <a href="#" class="card-link">ver anotação →</a>
+        </div>
+        <div class="card">
+          <div class="card-tag">mecânica clássica</div>
+          <h3>Formalismo Lagrangiano</h3>
+          <p>Princípio da mínima ação, equações de Euler-Lagrange e exemplos.</p>
+          <a href="#" class="card-link">ver anotação →</a>
+        </div>
+        <div class="card">
+          <div class="card-tag">eletromagnetismo</div>
+          <h3>Equações de Maxwell</h3>
+          <p>Forma diferencial, lei de Gauss, Faraday, Ampère-Maxwell.</p>
+          <a href="#" class="card-link">ver anotação →</a>
+        </div>
+        <div class="card">
+          <div class="card-tag">relatividade especial</div>
+          <h3>Transformações de Lorentz</h3>
+          <p>Dilatação do tempo, contração do espaço e invariância do intervalo.</p>
+          <a href="#" class="card-link">ver anotação →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTAS -->
+  <section id="listas" class="section">
+    <div class="section-inner">
+      <h2 class="section-title"><span class="accent">§3</span> Resoluções de Listas</h2>
+      <p class="section-desc">Listas resolvidas do curso — com comentários sobre o raciocínio.</p>
+      <table class="list-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Disciplina</th>
+            <th>Assunto</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">01</td>
+            <td>Mecânica Quântica I</td>
+            <td>Poço quadrado, oscilador harmônico</td>
+            <td><span class="badge badge-done">concluído</span></td>
+            <td><a href="#" class="card-link">ver →</a></td>
+          </tr>
+          <tr>
+            <td class="mono">02</td>
+            <td>Eletromag. I</td>
+            <td>Lei de Gauss e potencial elétrico</td>
+            <td><span class="badge badge-done">concluído</span></td>
+            <td><a href="#" class="card-link">ver →</a></td>
+          </tr>
+          <tr>
+            <td class="mono">03</td>
+            <td>Mecânica Clássica</td>
+            <td>Lagrangiana e movimento orbital</td>
+            <td><span class="badge badge-wip">em progresso</span></td>
+            <td><span class="muted">—</span></td>
+          </tr>
+          <tr>
+            <td class="mono">04</td>
+            <td>Física Matemática</td>
+            <td>Funções de Green, séries de Fourier</td>
+            <td><span class="badge badge-plan">planejado</span></td>
+            <td><span class="muted">—</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section id="projetos" class="section section-alt">
+    <div class="section-inner">
+      <h2 class="section-title"><span class="accent">§4</span> Projetos</h2>
+      <div class="project-list">
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">Simulador de Órbitas</span>
+            <span class="tag">Python · NumPy</span>
+          </div>
+          <p>Integração numérica das equações de movimento gravitacional. Visualização de órbitas elípticas, hiperbólicas e perturbações.</p>
+          <a href="#" class="card-link">repositório →</a>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">Autovalores do Poço Quadrado</span>
+            <span class="tag">Python · SciPy</span>
+          </div>
+          <p>Solução numérica da equação de Schrödinger para poço finito. Comparação com soluções analíticas e plotagem das funções de onda.</p>
+          <a href="#" class="card-link">repositório →</a>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-name">Visualizador de Campos</span>
+            <span class="tag">Python · Matplotlib</span>
+          </div>
+          <p>Mapa de linhas de campo elétrico e magnético para configurações arbitrárias de cargas e correntes.</p>
+          <a href="#" class="card-link">repositório →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUERO FAZER -->
+  <section id="quero-fazer" class="section">
+    <div class="section-inner">
+      <h2 class="section-title"><span class="accent">§5</span> O que quero explorar</h2>
+      <p class="section-desc">Tópicos e projetos que quero estudar — um mapa do que vem por aí.</p>
+      <ul class="todo-list">
+        <li><span class="todo-icon">○</span> Teoria Quântica de Campos — introdução pelo formalismo de path integrals</li>
+        <li><span class="todo-icon">○</span> Relatividade Geral — geometria diferencial e equações de Einstein</li>
+        <li><span class="todo-icon">○</span> Física Estatística — ensemble canônico e transições de fase</li>
+        <li><span class="todo-icon">○</span> Simulação de partículas com o método de Monte Carlo</li>
+        <li><span class="todo-icon">○</span> Grupos de Lie na física — SU(2), SU(3) e suas representações</li>
+        <li><span class="todo-icon">○</span> Computação quântica — circuitos e algoritmos de Grover e Shor</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="mono">rephysics © 2025</span>
+      <div class="footer-links">
+        <a href="https://instagram.com/rephysics" target="_blank">instagram</a>
+        <a href="https://github.com/rephysics" target="_blank">github</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
