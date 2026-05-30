@@ -1,18 +1,18 @@
 /* ============================================
    rephysics — style.css
-   Estética: físico teórico · preto & branco · verde-musgo
+   Estética: físico teórico · branco · verde-musgo
    ============================================ */
 
 :root {
-  --bg:          #0d0d0b;
-  --bg-alt:      #111110;
-  --surface:     #181815;
-  --border:      #2a2a26;
-  --accent:      #6b8c6e;   /* verde-musgo */
-  --accent-dim:  #4a6b4d;
-  --text:        #d4d0c8;
-  --text-muted:  #6b6860;
-  --text-strong: #f0ece0;
+  --bg:          #f5f3ee;
+  --bg-alt:      #edeae3;
+  --surface:     #e5e1d8;
+  --border:      #c8c4b8;
+  --accent:      #4a6b4d;   /* verde-musgo */
+  --accent-dim:  #3a5a3d;
+  --text:        #2a2820;
+  --text-muted:  #7a7668;
+  --text-strong: #0d0d0b;
   --mono:        'Inconsolata', monospace;
   --serif:       'EB Garamond', Georgia, serif;
 }
@@ -43,8 +43,8 @@ body {
 
 /* ---- SELECTION ---- */
 ::selection {
-  background: var(--accent-dim);
-  color: var(--text-strong);
+  background: var(--accent);
+  color: #f5f3ee;
 }
 
 /* ============================================
@@ -54,7 +54,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(13, 13, 11, 0.92);
+  background: rgba(245, 243, 238, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
@@ -160,7 +160,7 @@ nav a:hover {
   padding: 0.6rem 1.4rem;
   border: 1px solid var(--accent);
   background: var(--accent);
-  color: var(--bg);
+  color: #f5f3ee;
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
 }
@@ -367,15 +367,15 @@ nav a:hover {
 }
 
 .badge-done {
-  background: rgba(107, 140, 110, 0.15);
+  background: rgba(74, 107, 77, 0.12);
   color: var(--accent);
   border: 1px solid var(--accent-dim);
 }
 
 .badge-wip {
   background: rgba(160, 130, 80, 0.1);
-  color: #a08050;
-  border: 1px solid #6b5530;
+  color: #7a6030;
+  border: 1px solid #b09060;
 }
 
 .badge-plan {
@@ -554,3 +554,5 @@ footer {
     padding: 0.7rem 0.5rem;
   }
 }
+
+
