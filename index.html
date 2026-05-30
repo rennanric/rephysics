@@ -3,204 +3,330 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>rephysics</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>Pesquisa · rephysics</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:          #f5f3ee;
+      --bg-alt:      #edeae3;
+      --surface:     #e5e1d8;
+      --border:      #c8c4b8;
+      --accent:      #4a6b4d;
+      --accent-dim:  #3a5a3d;
+      --text:        #2a2820;
+      --text-muted:  #7a7668;
+      --text-strong: #0d0d0b;
+      --mono:        'Inconsolata', monospace;
+      --serif:       'EB Garamond', Georgia, serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--accent); color: #f5f3ee; }
+
+    /* ── NAV (igual ao site principal) ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(245,243,238,0.93);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 900px; margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem;
+    }
+    .logo { display: flex; align-items: baseline; gap: 0.5rem; text-decoration: none; }
+    .logo-symbol { font-family: var(--serif); font-size: 1.6rem; color: var(--accent); line-height: 1; }
+    .logo-name { font-family: var(--mono); font-size: 0.95rem; color: var(--text-strong); letter-spacing: 0.08em; }
+    nav { display: flex; gap: 2rem; }
+    nav a { font-family: var(--mono); font-size: 0.8rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+    nav a:hover, nav a.active { color: var(--accent); }
+
+    /* ── HERO DA PÁGINA ── */
+    .page-hero {
+      max-width: 900px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-label {
+      font-family: var(--mono); font-size: 0.72rem;
+      color: var(--accent); letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .page-title {
+      font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 400; color: var(--text-strong);
+      line-height: 1.1; letter-spacing: -0.02em;
+    }
+    .page-sub {
+      margin-top: 1rem; font-style: italic;
+      color: var(--text-muted); max-width: 500px;
+      font-size: 1rem;
+    }
+
+    /* ── WRAPPER ── */
+    .content {
+      max-width: 900px; margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    /* ── BLOCO: EM ANDAMENTO ── */
+    .block { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+    .block:last-child { border-bottom: none; }
+
+    .block-label {
+      font-family: var(--mono); font-size: 0.7rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .block-label::after {
+      content: '';
+      flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* Cards de pesquisa em andamento */
+    .research-card {
+      border: 1px solid var(--border);
+      padding: 2rem 2.2rem;
+      margin-bottom: 1.5px;
+      background: var(--bg);
+      transition: background 0.2s;
+      position: relative;
+    }
+    .research-card:hover { background: var(--bg-alt); }
+
+    .research-card + .research-card { border-top: none; }
+
+    .rc-type {
+      font-family: var(--mono); font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.7rem;
+    }
+    .rc-title {
+      font-family: var(--serif); font-size: 1.35rem;
+      font-weight: 400; color: var(--text-strong);
+      line-height: 1.3; margin-bottom: 1rem;
+    }
+    .rc-desc {
+      font-size: 0.97rem; color: var(--text-muted);
+      max-width: 650px; line-height: 1.7;
+    }
+    .rc-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 1.2rem;
+    }
+    .rc-tag {
+      font-family: var(--mono); font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      border: 1px solid var(--border);
+      padding: 0.18rem 0.6rem;
+      color: var(--text-muted);
+    }
+    .rc-number {
+      position: absolute; top: 2rem; right: 2.2rem;
+      font-family: var(--mono); font-size: 0.75rem;
+      color: var(--border);
+    }
+
+    /* ── GRID DE INTERESSES ── */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .interest-card {
+      background: var(--bg);
+      padding: 1.8rem;
+      display: flex; flex-direction: column; gap: 0.7rem;
+      transition: background 0.2s;
+    }
+    .interest-card:hover { background: var(--surface); }
+
+    .ic-icon {
+      font-size: 1.1rem; line-height: 1;
+      margin-bottom: 0.2rem;
+      opacity: 0.6;
+    }
+    .ic-title {
+      font-family: var(--serif); font-size: 1.08rem;
+      font-weight: 400; color: var(--text-strong);
+      line-height: 1.3;
+    }
+    .ic-desc {
+      font-size: 0.88rem; color: var(--text-muted);
+      line-height: 1.65; flex: 1;
+    }
+    .ic-keyword {
+      font-family: var(--mono); font-size: 0.65rem;
+      color: var(--accent); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-top: 0.3rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 2rem 0;
+    }
+    .footer-inner {
+      max-width: 900px; margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-inner span, .footer-links a {
+      font-family: var(--mono); font-size: 0.78rem;
+      color: var(--text-muted); text-decoration: none;
+      letter-spacing: 0.05em; transition: color 0.2s;
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .header-inner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      nav { gap: 1.2rem; flex-wrap: wrap; }
+      .page-hero { padding: 3rem 1.5rem 2rem; }
+      .content { padding: 0 1.5rem 4rem; }
+      .rc-number { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="header-inner">
-      <div class="logo">
+      <a class="logo" href="index.html">
         <span class="logo-symbol">∂</span>
         <span class="logo-name">rephysics</span>
-      </div>
+      </a>
       <nav>
-        <a href="#sobre">sobre</a>
-        <a href="#anotacoes">anotações</a>
-        <a href="#listas">listas</a>
-        <a href="#projetos">projetos</a>
-        <a href="#quero-fazer">em progresso</a>
+        <a href="index.html">início</a>
+        <a href="#">anotações</a>
+        <a href="#">listas</a>
+        <a href="pesquisa.html" class="active">pesquisa</a>
+        <a href="#">projetos</a>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <p class="hero-label">física teórica · anotações · projetos</p>
-      <h1 class="hero-title">rephysics</h1>
-      <p class="hero-sub">
-        Este é meu espaço pessoal — onde documento o que aprendo, resolvo problemas
-        e registro ideias. Uma espécie de caderno aberto sobre física.
-      </p>
-      <div class="hero-links">
-        <a href="https://instagram.com/rephysics" target="_blank" class="btn">→ instagram</a>
-        <a href="https://github.com/rephysics" target="_blank" class="btn btn-ghost">github</a>
-      </div>
-    </div>
-    <div class="hero-eq">
-      <span>∇²ψ + <sup>2m</sup>/<sub>ℏ²</sub>(E − V)ψ = 0</span>
-    </div>
-  </section>
+  <div class="page-hero">
+    <p class="page-label">linhas de pesquisa</p>
+    <h1 class="page-title">Pesquisa &amp; Interesses<br>Acadêmicos</h1>
+    <p class="page-sub">Investigações em andamento e fronteiras teóricas que me movem.</p>
+  </div>
 
-  <!-- SOBRE -->
-  <section id="sobre" class="section">
-    <div class="section-inner">
-      <h2 class="section-title"><span class="accent">§1</span> Sobre</h2>
-      <div class="prose">
-        <p>
-          Estudante de física, interessado em mecânica quântica, relatividade e física
-          matemática. Mantenho o <strong>@rephysics</strong> no Instagram como forma de
-          tornar física mais acessível — e este repositório como registro do que estudo.
+  <div class="content">
+
+    <!-- EM ANDAMENTO -->
+    <div class="block">
+      <div class="block-label">pesquisas em andamento</div>
+
+      <div class="research-card">
+        <span class="rc-number">01</span>
+        <div class="rc-type">Iniciação Científica</div>
+        <h2 class="rc-title">Geodésicas em Espaços de Friedmann</h2>
+        <p class="rc-desc">
+          Estudo analítico e geométrico de trajetórias geodésicas no espaço-tempo de
+          Friedmann-Lemaître-Robertson-Walker (FLRW). Aplicação de métodos de Relatividade
+          Geral para modelagem geométrica e soluções exatas em cosmologia teórica.
         </p>
-        <p>
-          Aqui você encontra minhas anotações de aula, resoluções de listas, projetos
-          computacionais e coisas que quero explorar futuramente.
+        <div class="rc-tags">
+          <span class="rc-tag">Relatividade Geral</span>
+          <span class="rc-tag">Cosmologia Teórica</span>
+          <span class="rc-tag">Geometria Diferencial</span>
+          <span class="rc-tag">FLRW</span>
+        </div>
+      </div>
+
+      <div class="research-card">
+        <span class="rc-number">02</span>
+        <div class="rc-type">Trabalho de Conclusão de Curso</div>
+        <h2 class="rc-title">Dinâmica em Espaços Incompletos e Eletromagnetismo com Formas Diferenciais</h2>
+        <p class="rc-desc">
+          Investigação da dinâmica clássica e de campos em variedades geométricas com
+          incompletudes. Reinterpretação das Equações de Maxwell e do eletromagnetismo
+          clássico através do formalismo de Formas Diferenciais e do operador Dual de Hodge.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ANOTAÇÕES -->
-  <section id="anotacoes" class="section section-alt">
-    <div class="section-inner">
-      <h2 class="section-title"><span class="accent">§2</span> Anotações</h2>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-tag">mecânica quântica</div>
-          <h3>Equação de Schrödinger</h3>
-          <p>Derivação, interpretação probabilística e soluções para poço quadrado infinito.</p>
-          <a href="#" class="card-link">ver anotação →</a>
-        </div>
-        <div class="card">
-          <div class="card-tag">mecânica clássica</div>
-          <h3>Formalismo Lagrangiano</h3>
-          <p>Princípio da mínima ação, equações de Euler-Lagrange e exemplos.</p>
-          <a href="#" class="card-link">ver anotação →</a>
-        </div>
-        <div class="card">
-          <div class="card-tag">eletromagnetismo</div>
-          <h3>Equações de Maxwell</h3>
-          <p>Forma diferencial, lei de Gauss, Faraday, Ampère-Maxwell.</p>
-          <a href="#" class="card-link">ver anotação →</a>
-        </div>
-        <div class="card">
-          <div class="card-tag">relatividade especial</div>
-          <h3>Transformações de Lorentz</h3>
-          <p>Dilatação do tempo, contração do espaço e invariância do intervalo.</p>
-          <a href="#" class="card-link">ver anotação →</a>
+        <div class="rc-tags">
+          <span class="rc-tag">Formas Diferenciais</span>
+          <span class="rc-tag">Operador de Hodge</span>
+          <span class="rc-tag">Equações de Maxwell</span>
+          <span class="rc-tag">Variedades</span>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- LISTAS -->
-  <section id="listas" class="section">
-    <div class="section-inner">
-      <h2 class="section-title"><span class="accent">§3</span> Resoluções de Listas</h2>
-      <p class="section-desc">Listas resolvidas do curso — com comentários sobre o raciocínio.</p>
-      <table class="list-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Disciplina</th>
-            <th>Assunto</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="mono">01</td>
-            <td>Mecânica Quântica I</td>
-            <td>Poço quadrado, oscilador harmônico</td>
-            <td><span class="badge badge-done">concluído</span></td>
-            <td><a href="#" class="card-link">ver →</a></td>
-          </tr>
-          <tr>
-            <td class="mono">02</td>
-            <td>Eletromag. I</td>
-            <td>Lei de Gauss e potencial elétrico</td>
-            <td><span class="badge badge-done">concluído</span></td>
-            <td><a href="#" class="card-link">ver →</a></td>
-          </tr>
-          <tr>
-            <td class="mono">03</td>
-            <td>Mecânica Clássica</td>
-            <td>Lagrangiana e movimento orbital</td>
-            <td><span class="badge badge-wip">em progresso</span></td>
-            <td><span class="muted">—</span></td>
-          </tr>
-          <tr>
-            <td class="mono">04</td>
-            <td>Física Matemática</td>
-            <td>Funções de Green, séries de Fourier</td>
-            <td><span class="badge badge-plan">planejado</span></td>
-            <td><span class="muted">—</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <!-- INTERESSES -->
+    <div class="block">
+      <div class="block-label">interesses e fronteiras teóricas</div>
 
-  <!-- PROJETOS -->
-  <section id="projetos" class="section section-alt">
-    <div class="section-inner">
-      <h2 class="section-title"><span class="accent">§4</span> Projetos</h2>
-      <div class="project-list">
-        <div class="project-item">
-          <div class="project-header">
-            <span class="project-name">Simulador de Órbitas</span>
-            <span class="tag">Python · NumPy</span>
-          </div>
-          <p>Integração numérica das equações de movimento gravitacional. Visualização de órbitas elípticas, hiperbólicas e perturbações.</p>
-          <a href="#" class="card-link">repositório →</a>
+      <div class="interests-grid">
+
+        <div class="interest-card">
+          <div class="ic-icon">⟨ψ|</div>
+          <div class="ic-title">Gravidade Emergente e Entrópica</div>
+          <p class="ic-desc">
+            Modelos onde a força gravitacional e o espaço-tempo não são fundamentais,
+            mas emergem como fenômenos estatísticos e termodinâmicos — paradigma de Verlinde.
+          </p>
+          <div class="ic-keyword">Verlinde · Termodinâmica</div>
         </div>
-        <div class="project-item">
-          <div class="project-header">
-            <span class="project-name">Autovalores do Poço Quadrado</span>
-            <span class="tag">Python · SciPy</span>
-          </div>
-          <p>Solução numérica da equação de Schrödinger para poço finito. Comparação com soluções analíticas e plotagem das funções de onda.</p>
-          <a href="#" class="card-link">repositório →</a>
+
+        <div class="interest-card">
+          <div class="ic-icon">∂/∂t</div>
+          <div class="ic-title">Princípio Holográfico e Dualidade AdS/CFT</div>
+          <p class="ic-desc">
+            Correspondência entre a física gravitacional no interior do espaço-tempo
+            (bulk) e as teorias de campos quânticos na fronteira (boundary).
+          </p>
+          <div class="ic-keyword">AdS/CFT · Maldacena</div>
         </div>
-        <div class="project-item">
-          <div class="project-header">
-            <span class="project-name">Visualizador de Campos</span>
-            <span class="tag">Python · Matplotlib</span>
-          </div>
-          <p>Mapa de linhas de campo elétrico e magnético para configurações arbitrárias de cargas e correntes.</p>
-          <a href="#" class="card-link">repositório →</a>
+
+        <div class="interest-card">
+          <div class="ic-icon">S<sub>BH</sub></div>
+          <div class="ic-title">Informação Quântica e Termodinâmica de Buracos Negros</div>
+          <p class="ic-desc">
+            O papel do emaranhamento quântico na estrutura do espaço-tempo e no
+            paradoxo da informação de Hawking.
+          </p>
+          <div class="ic-keyword">Emaranhamento · Paradoxo de Hawking</div>
         </div>
+
+        <div class="interest-card">
+          <div class="ic-icon">δQ</div>
+          <div class="ic-title">Formalismo de Iyer-Wald e Cargas de Noether</div>
+          <p class="ic-desc">
+            Aplicação de formas diferenciais avançadas e invariância por difeomorfismo
+            para derivação da entropia de Wald e leis de emaranhamento em gravidade modificada.
+          </p>
+          <div class="ic-keyword">Entropia de Wald · Difeomorfismo</div>
+        </div>
+
       </div>
     </div>
-  </section>
 
-  <!-- QUERO FAZER -->
-  <section id="quero-fazer" class="section">
-    <div class="section-inner">
-      <h2 class="section-title"><span class="accent">§5</span> O que quero explorar</h2>
-      <p class="section-desc">Tópicos e projetos que quero estudar — um mapa do que vem por aí.</p>
-      <ul class="todo-list">
-        <li><span class="todo-icon">○</span> Teoria Quântica de Campos — introdução pelo formalismo de path integrals</li>
-        <li><span class="todo-icon">○</span> Relatividade Geral — geometria diferencial e equações de Einstein</li>
-        <li><span class="todo-icon">○</span> Física Estatística — ensemble canônico e transições de fase</li>
-        <li><span class="todo-icon">○</span> Simulação de partículas com o método de Monte Carlo</li>
-        <li><span class="todo-icon">○</span> Grupos de Lie na física — SU(2), SU(3) e suas representações</li>
-        <li><span class="todo-icon">○</span> Computação quântica — circuitos e algoritmos de Grover e Shor</li>
-      </ul>
-    </div>
-  </section>
+  </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <span class="mono">rephysics © 2025</span>
+      <span>rephysics © 2025</span>
       <div class="footer-links">
         <a href="https://instagram.com/rephysics" target="_blank">instagram</a>
-        <a href="https://github.com/rephysics" target="_blank">github</a>
+        <a href="https://github.com/rennanric" target="_blank">github</a>
       </div>
     </div>
   </footer>
