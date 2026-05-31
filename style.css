@@ -4,7 +4,7 @@
    ============================================ */
 
 :root {
-  --bg:          #eef0f5;
+  --bg:          #f5f3ee;
   --bg-alt:      #edeae3;
   --surface:     #e5e1d8;
   --border:      #c8c4b8;
@@ -555,4 +555,35 @@ footer {
   }
 }
 
+/* ============================================
+   LIST GROUPS (disciplinas)
+   ============================================ */
+.list-group {
+  margin-bottom: 2.5rem;
+}
 
+.list-group:last-child {
+  margin-bottom: 0;
+}
+
+.list-group-header {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 0.6rem 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--accent);
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.list-group .list-table {
+  border: 1px solid var(--border);
+  margin-top: 0;
+}
+
+.list-group .list-table thead tr {
+  background: var(--bg-alt);
+}
