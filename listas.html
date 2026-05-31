@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listas · rephysics</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:          #f5f3ee;
+      --bg-alt:      #edeae3;
+      --surface:     #e5e1d8;
+      --border:      #c8c4b8;
+      --accent:      #4a6b4d;
+      --accent-dim:  #3a5a3d;
+      --text:        #2a2820;
+      --text-muted:  #7a7668;
+      --text-strong: #0d0d0b;
+      --mono:        'Inconsolata', monospace;
+      --serif:       'EB Garamond', Georgia, serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--accent); color: #f5f3ee; }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(245,243,238,0.93);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 960px; margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem;
+    }
+    .logo { display: flex; align-items: baseline; gap: 0.5rem; text-decoration: none; }
+    .logo-symbol { font-family: var(--serif); font-size: 1.6rem; color: var(--accent); line-height: 1; }
+    .logo-name { font-family: var(--mono); font-size: 0.95rem; color: var(--text-strong); letter-spacing: 0.08em; }
+    nav { display: flex; gap: 2rem; flex-wrap: wrap; }
+    nav a {
+      font-family: var(--mono); font-size: 0.8rem;
+      color: var(--text-muted); text-decoration: none;
+      letter-spacing: 0.05em; transition: color 0.2s;
+    }
+    nav a:hover { color: var(--accent); }
+    nav a.active { color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+
+    /* ── HERO ── */
+    .page-hero {
+      max-width: 960px; margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+      align-items: flex-end; flex-wrap: wrap; gap: 2rem;
+    }
+    .hero-left {}
+    .page-label {
+      font-family: var(--mono); font-size: 0.72rem;
+      color: var(--accent); letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 400; color: var(--text-strong);
+      line-height: 1.1; letter-spacing: -0.02em;
+    }
+    .page-sub {
+      margin-top: 0.8rem; font-style: italic;
+      color: var(--text-muted); font-size: 1rem;
+    }
+    .hero-stats {
+      display: flex; gap: 2.5rem;
+    }
+    .stat {
+      text-align: right;
+    }
+    .stat-number {
+      font-family: var(--serif); font-size: 2.8rem;
+      font-weight: 400; color: var(--text-strong);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--text-muted); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-top: 0.2rem;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 960px; margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    /* ── DISCIPLINA BLOCK ── */
+    .disciplina {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .disciplina:last-child { border-bottom: none; }
+
+    .disciplina-header {
+      display: flex; align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .disciplina-name {
+      font-family: var(--serif);
+      font-size: 1.5rem; font-weight: 400;
+      color: var(--text-strong); letter-spacing: -0.01em;
+    }
+    .disciplina-name span {
+      font-style: italic; color: var(--accent);
+      margin-right: 0.5rem;
+    }
+    .disciplina-meta {
+      font-family: var(--mono); font-size: 0.72rem;
+      color: var(--text-muted); letter-spacing: 0.08em;
+    }
+
+    /* ── LISTA CARDS ── */
+    .listas-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .lista-card {
+      background: var(--bg);
+      padding: 1.6rem 2rem;
+      display: grid;
+      grid-template-columns: 2.5rem 1fr auto;
+      gap: 1.2rem;
+      align-items: start;
+      transition: background 0.15s;
+    }
+    .lista-card:hover { background: var(--bg-alt); }
+
+    .lista-num {
+      font-family: var(--mono); font-size: 0.8rem;
+      color: var(--border); padding-top: 0.15rem;
+      font-weight: 300;
+    }
+
+    .lista-body {}
+    .lista-title {
+      font-family: var(--serif); font-size: 1.1rem;
+      color: var(--text-strong); font-weight: 400;
+      line-height: 1.3; margin-bottom: 0.4rem;
+    }
+    .lista-topics {
+      font-size: 0.9rem; color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .lista-actions {
+      display: flex; flex-direction: column;
+      align-items: flex-end; gap: 0.6rem;
+      padding-top: 0.1rem; min-width: 120px;
+    }
+
+    .badge {
+      font-family: var(--mono); font-size: 0.65rem;
+      letter-spacing: 0.08em; padding: 0.2rem 0.65rem;
+      border-radius: 2px; white-space: nowrap;
+    }
+    .badge-done {
+      background: rgba(74, 107, 77, 0.12);
+      color: var(--accent); border: 1px solid var(--accent-dim);
+    }
+    .badge-wip {
+      background: rgba(160, 130, 80, 0.1);
+      color: #7a6030; border: 1px solid #b09060;
+    }
+    .badge-plan {
+      background: var(--surface);
+      color: var(--text-muted); border: 1px solid var(--border);
+    }
+
+    .pdf-links {
+      display: flex; flex-direction: column;
+      align-items: flex-end; gap: 0.3rem;
+    }
+    .pdf-link {
+      font-family: var(--mono); font-size: 0.72rem;
+      color: var(--accent-dim); text-decoration: none;
+      letter-spacing: 0.04em; transition: color 0.2s;
+      display: flex; align-items: center; gap: 0.35rem;
+    }
+    .pdf-link:hover { color: var(--accent); }
+    .pdf-link::before {
+      content: '↓';
+      font-size: 0.65rem;
+    }
+    .pdf-link.resolucao { color: var(--text-muted); }
+    .pdf-link.resolucao:hover { color: var(--accent); }
+    .pdf-unavailable {
+      font-family: var(--mono); font-size: 0.7rem;
+      color: var(--border); font-style: italic;
+    }
+
+    /* ── NOTA DE RODAPÉ ── */
+    .nota {
+      margin-top: 3rem;
+      padding: 1.2rem 1.5rem;
+      border-left: 2px solid var(--accent);
+      background: var(--bg-alt);
+      font-size: 0.9rem; color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; }
+    .footer-inner {
+      max-width: 960px; margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-inner span, .footer-links a {
+      font-family: var(--mono); font-size: 0.78rem;
+      color: var(--text-muted); text-decoration: none;
+      letter-spacing: 0.05em; transition: color 0.2s;
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .header-inner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      nav { gap: 1rem; }
+      .page-hero { padding: 2.5rem 1.5rem 2rem; flex-direction: column; align-items: flex-start; }
+      .hero-stats { gap: 1.5rem; }
+      .content { padding: 0 1.5rem 4rem; }
+      .lista-card {
+        grid-template-columns: 2rem 1fr;
+        grid-template-rows: auto auto;
+      }
+      .lista-actions {
+        grid-column: 2;
+        flex-direction: row; flex-wrap: wrap;
+        align-items: center; justify-content: flex-start;
+        min-width: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-symbol">∂</span>
+        <span class="logo-name">rephysics</span>
+      </a>
+      <nav>
+        <a href="index.html">início</a>
+        <a href="index.html#anotacoes">anotações</a>
+        <a href="listas.html" class="active">listas</a>
+        <a href="pesquisa.html">pesquisa</a>
+        <a href="index.html#projetos">projetos</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <div class="hero-left">
+      <p class="page-label">UEL · 2025–2026</p>
+      <h1 class="page-title">Resoluções de Listas</h1>
+      <p class="page-sub">Enunciados e resoluções comentadas das disciplinas do curso.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">5</div>
+        <div class="stat-label">listas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">resolvidas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">2</div>
+        <div class="stat-label">disciplinas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ══════════════════════════════════
+         MECÂNICA QUÂNTICA I
+    ══════════════════════════════════ -->
+    <div class="disciplina">
+      <div class="disciplina-header">
+        <h2 class="disciplina-name"><span>§1</span> Mecânica Quântica I</h2>
+        <span class="disciplina-meta">Prof. Sandro Vitenti · 2026</span>
+      </div>
+
+      <div class="listas-grid">
+
+        <!-- Lista 1 -->
+        <div class="lista-card">
+          <div class="lista-num">01</div>
+          <div class="lista-body">
+            <div class="lista-title">Operadores Lineares e Mudança de Base</div>
+            <div class="lista-topics">
+              Representação matricial de operadores · autovalores e autovetores ·
+              diagonalização · bases ortonormais · relação de completude · operador adjunto
+            </div>
+          </div>
+          <div class="lista-actions">
+            <span class="badge badge-done">concluído</span>
+            <div class="pdf-links">
+              <a href="pdfs/Primeira_lista_de_Quântica_I-2026.pdf" target="_blank" class="pdf-link">enunciado</a>
+              <a href="pdfs/Resolução_lista_1_LaTex_quantica.pdf" target="_blank" class="pdf-link resolucao">resolução</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista 2 -->
+        <div class="lista-card">
+          <div class="lista-num">02</div>
+          <div class="lista-body">
+            <div class="lista-title">Álgebra de Operadores e Produto Externo</div>
+            <div class="lista-topics">
+              Comutadores · álgebra de bra-kets · operadores Hermitiano e unitário ·
+              representação matricial do produto externo |α⟩⟨β|
+            </div>
+          </div>
+          <div class="lista-actions">
+            <span class="badge badge-done">concluído</span>
+            <div class="pdf-links">
+              <a href="pdfs/Segunda_lista_de_Quântica_I-2026.pdf" target="_blank" class="pdf-link">enunciado</a>
+              <a href="pdfs/Resolução_lista_2__mecanica_quantica_.pdf" target="_blank" class="pdf-link resolucao">resolução</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista 3 -->
+        <div class="lista-card">
+          <div class="lista-num">03</div>
+          <div class="lista-body">
+            <div class="lista-title">Lista 3</div>
+            <div class="lista-topics">—</div>
+          </div>
+          <div class="lista-actions">
+            <span class="badge badge-wip">em andamento</span>
+            <div class="pdf-links">
+              <span class="pdf-unavailable">em breve</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lista 4 -->
+        <div class="lista-card">
+          <div class="lista-num">04</div>
+          <div class="lista-body">
+            <div class="lista-title">Grupos de Rotações, Equação de Continuidade e Barreiras de Potencial</div>
+            <div class="lista-topics">
+              Grupo SO(3) e SU(2) · matrizes de Pauli · geradores infinitesimais ·
+              equação de continuidade · barreira de potencial degrau · oscilador harmônico
+            </div>
+          </div>
+          <div class="lista-actions">
+            <span class="badge badge-wip">em andamento</span>
+            <div class="pdf-links">
+              <a href="pdfs/Quarta_lista_de_Quântica_I-2026__1_.pdf" target="_blank" class="pdf-link">enunciado</a>
+              <span class="pdf-unavailable">resolução em breve</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         RELATIVIDADE RESTRITA
+    ══════════════════════════════════ -->
+    <div class="disciplina">
+      <div class="disciplina-header">
+        <h2 class="disciplina-name"><span>§2</span> Relatividade Restrita</h2>
+        <span class="disciplina-meta">Prof. Sandro Vitenti · 2025</span>
+      </div>
+
+      <div class="listas-grid">
+
+        <!-- Lista 1 -->
+        <div class="lista-card">
+          <div class="lista-num">01</div>
+          <div class="lista-body">
+            <div class="lista-title">Dilatação do Tempo, Contração do Espaço e Formalismo Tensorial</div>
+            <div class="lista-topics">
+              Tempo próprio na métrica de Minkowski · separação tipo espaço e tipo tempo ·
+              paradoxo dos gêmeos · efeito Doppler relativístico ·
+              transformações de Lorentz em forma tensorial · vetores e covetores
+            </div>
+          </div>
+          <div class="lista-actions">
+            <span class="badge badge-done">concluído</span>
+            <div class="pdf-links">
+              <a href="pdfs/lista_1_restrita.pdf" target="_blank" class="pdf-link">enunciado</a>
+              <a href="pdfs/resolução_lista_1__relatividade_restrita_.pdf" target="_blank" class="pdf-link resolucao">resolução</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- NOTA -->
+    <div class="nota">
+      As resoluções são pessoais e podem conter erros — use como referência, não como gabarito.
+      Se encontrar algum problema, entre em contato pelo Instagram.
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span>rephysics © 2025</span>
+      <div class="footer-links">
+        <a href="https://instagram.com/rephysics" target="_blank">instagram</a>
+        <a href="https://github.com/rennanric" target="_blank">github</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
