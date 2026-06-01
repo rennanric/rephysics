@@ -67,7 +67,6 @@
       display: flex; justify-content: space-between;
       align-items: flex-end; flex-wrap: wrap; gap: 2rem;
     }
-    .hero-left {}
     .page-label {
       font-family: var(--mono); font-size: 0.72rem;
       color: var(--accent); letter-spacing: 0.18em;
@@ -83,16 +82,11 @@
       margin-top: 0.8rem; font-style: italic;
       color: var(--text-muted); font-size: 1rem;
     }
-    .hero-stats {
-      display: flex; gap: 2.5rem;
-    }
-    .stat {
-      text-align: right;
-    }
+    .hero-stats { display: flex; gap: 2.5rem; }
+    .stat { text-align: right; }
     .stat-number {
       font-family: var(--serif); font-size: 2.8rem;
-      font-weight: 400; color: var(--text-strong);
-      line-height: 1;
+      font-weight: 400; color: var(--text-strong); line-height: 1;
     }
     .stat-label {
       font-family: var(--mono); font-size: 0.68rem;
@@ -101,33 +95,22 @@
     }
 
     /* ── CONTENT ── */
-    .content {
-      max-width: 960px; margin: 0 auto;
-      padding: 0 2rem 5rem;
-    }
+    .content { max-width: 960px; margin: 0 auto; padding: 0 2rem 5rem; }
 
     /* ── DISCIPLINA BLOCK ── */
-    .disciplina {
-      padding: 3.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
+    .disciplina { padding: 3.5rem 0; border-bottom: 1px solid var(--border); }
     .disciplina:last-child { border-bottom: none; }
 
     .disciplina-header {
       display: flex; align-items: baseline;
       justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-      margin-bottom: 2rem;
+      flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;
     }
     .disciplina-name {
-      font-family: var(--serif);
-      font-size: 1.5rem; font-weight: 400;
-      color: var(--text-strong); letter-spacing: -0.01em;
+      font-family: var(--serif); font-size: 1.5rem;
+      font-weight: 400; color: var(--text-strong); letter-spacing: -0.01em;
     }
-    .disciplina-name span {
-      font-style: italic; color: var(--accent);
-      margin-right: 0.5rem;
-    }
+    .disciplina-name span { font-style: italic; color: var(--accent); margin-right: 0.5rem; }
     .disciplina-meta {
       font-family: var(--mono); font-size: 0.72rem;
       color: var(--text-muted); letter-spacing: 0.08em;
@@ -135,10 +118,8 @@
 
     /* ── LISTA CARDS ── */
     .listas-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5px;
-      background: var(--border);
+      display: flex; flex-direction: column;
+      gap: 1.5px; background: var(--border);
       border: 1px solid var(--border);
     }
 
@@ -147,33 +128,27 @@
       padding: 1.6rem 2rem;
       display: grid;
       grid-template-columns: 2.5rem 1fr auto;
-      gap: 1.2rem;
-      align-items: start;
+      gap: 1.2rem; align-items: start;
       transition: background 0.15s;
     }
     .lista-card:hover { background: var(--bg-alt); }
 
     .lista-num {
       font-family: var(--mono); font-size: 0.8rem;
-      color: var(--border); padding-top: 0.15rem;
-      font-weight: 300;
+      color: var(--border); padding-top: 0.15rem; font-weight: 300;
     }
 
-    .lista-body {}
     .lista-title {
       font-family: var(--serif); font-size: 1.1rem;
       color: var(--text-strong); font-weight: 400;
       line-height: 1.3; margin-bottom: 0.4rem;
     }
-    .lista-topics {
-      font-size: 0.9rem; color: var(--text-muted);
-      line-height: 1.55;
-    }
+    .lista-topics { font-size: 0.9rem; color: var(--text-muted); line-height: 1.55; }
 
     .lista-actions {
       display: flex; flex-direction: column;
       align-items: flex-end; gap: 0.6rem;
-      padding-top: 0.1rem; min-width: 120px;
+      padding-top: 0.1rem; min-width: 130px;
     }
 
     .badge {
@@ -181,23 +156,11 @@
       letter-spacing: 0.08em; padding: 0.2rem 0.65rem;
       border-radius: 2px; white-space: nowrap;
     }
-    .badge-done {
-      background: rgba(74, 107, 77, 0.12);
-      color: var(--accent); border: 1px solid var(--accent-dim);
-    }
-    .badge-wip {
-      background: rgba(160, 130, 80, 0.1);
-      color: #7a6030; border: 1px solid #b09060;
-    }
-    .badge-plan {
-      background: var(--surface);
-      color: var(--text-muted); border: 1px solid var(--border);
-    }
+    .badge-done { background: rgba(74,107,77,0.12); color: var(--accent); border: 1px solid var(--accent-dim); }
+    .badge-wip  { background: rgba(160,130,80,0.1); color: #7a6030; border: 1px solid #b09060; }
+    .badge-plan { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); }
 
-    .pdf-links {
-      display: flex; flex-direction: column;
-      align-items: flex-end; gap: 0.3rem;
-    }
+    .pdf-links { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; }
     .pdf-link {
       font-family: var(--mono); font-size: 0.72rem;
       color: var(--accent-dim); text-decoration: none;
@@ -205,10 +168,7 @@
       display: flex; align-items: center; gap: 0.35rem;
     }
     .pdf-link:hover { color: var(--accent); }
-    .pdf-link::before {
-      content: '↓';
-      font-size: 0.65rem;
-    }
+    .pdf-link::before { content: '↓'; font-size: 0.65rem; }
     .pdf-link.resolucao { color: var(--text-muted); }
     .pdf-link.resolucao:hover { color: var(--accent); }
     .pdf-unavailable {
@@ -216,14 +176,11 @@
       color: var(--border); font-style: italic;
     }
 
-    /* ── NOTA DE RODAPÉ ── */
     .nota {
-      margin-top: 3rem;
-      padding: 1.2rem 1.5rem;
+      margin-top: 3rem; padding: 1.2rem 1.5rem;
       border-left: 2px solid var(--accent);
       background: var(--bg-alt);
-      font-size: 0.9rem; color: var(--text-muted);
-      font-style: italic;
+      font-size: 0.9rem; color: var(--text-muted); font-style: italic;
     }
 
     /* ── FOOTER ── */
@@ -241,23 +198,14 @@
     .footer-links { display: flex; gap: 1.5rem; }
     .footer-links a:hover { color: var(--accent); }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
       .header-inner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
       nav { gap: 1rem; }
       .page-hero { padding: 2.5rem 1.5rem 2rem; flex-direction: column; align-items: flex-start; }
       .hero-stats { gap: 1.5rem; }
       .content { padding: 0 1.5rem 4rem; }
-      .lista-card {
-        grid-template-columns: 2rem 1fr;
-        grid-template-rows: auto auto;
-      }
-      .lista-actions {
-        grid-column: 2;
-        flex-direction: row; flex-wrap: wrap;
-        align-items: center; justify-content: flex-start;
-        min-width: unset;
-      }
+      .lista-card { grid-template-columns: 2rem 1fr; }
+      .lista-actions { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; min-width: unset; }
     }
   </style>
 </head>
@@ -279,7 +227,6 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <div class="page-hero">
     <div class="hero-left">
       <p class="page-label">UEL · 2025–2026</p>
@@ -304,9 +251,7 @@
 
   <div class="content">
 
-    <!-- ══════════════════════════════════
-         MECÂNICA QUÂNTICA I
-    ══════════════════════════════════ -->
+    <!-- MECÂNICA QUÂNTICA I -->
     <div class="disciplina">
       <div class="disciplina-header">
         <h2 class="disciplina-name"><span>§1</span> Mecânica Quântica I</h2>
@@ -315,7 +260,6 @@
 
       <div class="listas-grid">
 
-        <!-- Lista 1 -->
         <div class="lista-card">
           <div class="lista-num">01</div>
           <div class="lista-body">
@@ -328,13 +272,12 @@
           <div class="lista-actions">
             <span class="badge badge-done">concluído</span>
             <div class="pdf-links">
-              <a href="pdfs/Primeira_lista_de_Quântica_I-2026.pdf" target="_blank" class="pdf-link">enunciado</a>
-              <a href="pdfs/Resolução_lista_1_LaTex_quantica.pdf" target="_blank" class="pdf-link resolucao">resolução</a>
+              <a href="pdfs/quantica/Primeira lista de Quântica I-2026.pdf" target="_blank" class="pdf-link">enunciado</a>
+              <a href="pdfs/quantica/Resolução lista 1 LaTex quantica.pdf" target="_blank" class="pdf-link resolucao">resolução</a>
             </div>
           </div>
         </div>
 
-        <!-- Lista 2 -->
         <div class="lista-card">
           <div class="lista-num">02</div>
           <div class="lista-body">
@@ -347,13 +290,12 @@
           <div class="lista-actions">
             <span class="badge badge-done">concluído</span>
             <div class="pdf-links">
-              <a href="pdfs/Segunda_lista_de_Quântica_I-2026.pdf" target="_blank" class="pdf-link">enunciado</a>
-              <a href="pdfs/Resolução_lista_2__mecanica_quantica_.pdf" target="_blank" class="pdf-link resolucao">resolução</a>
+              <a href="pdfs/quantica/Segunda lista de Quântica I-2026.pdf" target="_blank" class="pdf-link">enunciado</a>
+              <a href="pdfs/quantica/Resolução lista 2 (mecanica quantica).pdf" target="_blank" class="pdf-link resolucao">resolução</a>
             </div>
           </div>
         </div>
 
-        <!-- Lista 3 -->
         <div class="lista-card">
           <div class="lista-num">03</div>
           <div class="lista-body">
@@ -368,7 +310,6 @@
           </div>
         </div>
 
-        <!-- Lista 4 -->
         <div class="lista-card">
           <div class="lista-num">04</div>
           <div class="lista-body">
@@ -381,7 +322,7 @@
           <div class="lista-actions">
             <span class="badge badge-wip">em andamento</span>
             <div class="pdf-links">
-              <a href="pdfs/Quarta_lista_de_Quântica_I-2026__1_.pdf" target="_blank" class="pdf-link">enunciado</a>
+              <a href="pdfs/quantica/Quarta lista de Quântica I-2026 (1).pdf" target="_blank" class="pdf-link">enunciado</a>
               <span class="pdf-unavailable">resolução em breve</span>
             </div>
           </div>
@@ -390,9 +331,7 @@
       </div>
     </div>
 
-    <!-- ══════════════════════════════════
-         RELATIVIDADE RESTRITA
-    ══════════════════════════════════ -->
+    <!-- RELATIVIDADE RESTRITA -->
     <div class="disciplina">
       <div class="disciplina-header">
         <h2 class="disciplina-name"><span>§2</span> Relatividade Restrita</h2>
@@ -401,7 +340,6 @@
 
       <div class="listas-grid">
 
-        <!-- Lista 1 -->
         <div class="lista-card">
           <div class="lista-num">01</div>
           <div class="lista-body">
@@ -415,8 +353,8 @@
           <div class="lista-actions">
             <span class="badge badge-done">concluído</span>
             <div class="pdf-links">
-              <a href="pdfs/lista_1_restrita.pdf" target="_blank" class="pdf-link">enunciado</a>
-              <a href="pdfs/resolução_lista_1__relatividade_restrita_.pdf" target="_blank" class="pdf-link resolucao">resolução</a>
+              <a href="pdfs/restrita/lista 1 restrita.pdf" target="_blank" class="pdf-link">enunciado</a>
+              <a href="pdfs/restrita/resolução lista 1 (relatividade restrita).pdf" target="_blank" class="pdf-link resolucao">resolução</a>
             </div>
           </div>
         </div>
@@ -424,7 +362,6 @@
       </div>
     </div>
 
-    <!-- NOTA -->
     <div class="nota">
       As resoluções são pessoais e podem conter erros — use como referência, não como gabarito.
       Se encontrar algum problema, entre em contato pelo Instagram.
