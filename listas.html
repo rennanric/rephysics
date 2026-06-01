@@ -25,17 +25,13 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 0.95rem;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
+      background: var(--bg); color: var(--text);
+      font-family: var(--sans); font-size: 0.95rem;
+      line-height: 1.65; -webkit-font-smoothing: antialiased;
     }
 
     ::selection { background: var(--accent); color: #f5f3ee; }
 
-    /* ── HEADER ── */
     header {
       position: sticky; top: 0; z-index: 100;
       background: rgba(245,243,238,0.95);
@@ -43,185 +39,120 @@
       border-bottom: 1px solid var(--border);
     }
     .header-inner {
-      max-width: 960px; margin: 0 auto;
-      padding: 0.9rem 2rem;
+      max-width: 960px; margin: 0 auto; padding: 0.9rem 2rem;
       display: flex; align-items: center;
       justify-content: space-between; gap: 2rem;
     }
     .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
-    .logo-symbol {
-      font-family: var(--serif); font-size: 1.5rem;
-      color: var(--accent); line-height: 1;
-    }
-    .logo-name {
-      font-family: var(--mono); font-size: 0.9rem;
-      color: var(--text-strong); letter-spacing: 0.08em;
-    }
+    .logo-symbol { font-family: var(--serif); font-size: 1.5rem; color: var(--accent); line-height: 1; }
+    .logo-name { font-family: var(--mono); font-size: 0.9rem; color: var(--text-strong); letter-spacing: 0.08em; }
     nav { display: flex; gap: 1.8rem; flex-wrap: wrap; }
-    nav a {
-      font-family: var(--mono); font-size: 0.75rem;
-      color: var(--text-muted); text-decoration: none;
-      letter-spacing: 0.06em; transition: color 0.2s;
-    }
-    nav a:hover { color: var(--accent); }
-    nav a.active { color: var(--accent); }
+    nav a { font-family: var(--mono); font-size: 0.75rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+    nav a:hover, nav a.active { color: var(--accent); }
 
-    /* ── HERO ── */
     .page-hero {
       max-width: 960px; margin: 0 auto;
       padding: 3.5rem 2rem 2.5rem;
       border-bottom: 1px solid var(--border);
     }
-    .page-label {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: var(--accent); letter-spacing: 0.2em;
-      text-transform: uppercase; margin-bottom: 0.7rem;
-    }
-    .page-title {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400; color: var(--text-strong);
-      line-height: 1.1; letter-spacing: -0.02em;
-      margin-bottom: 0.6rem;
-    }
-    .page-sub {
-      font-size: 0.9rem; color: var(--text-muted);
-      font-style: italic; font-family: var(--serif);
-    }
+    .page-label { font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.7rem; }
+    .page-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; color: var(--text-strong); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+    .page-sub { font-size: 0.9rem; color: var(--text-muted); font-style: italic; font-family: var(--serif); }
 
-    /* ── CONTENT ── */
     .content { max-width: 960px; margin: 0 auto; padding: 0 2rem 5rem; }
 
-    /* ── DISCIPLINA BLOCK ── */
-    .disciplina { padding: 3rem 0; border-bottom: 1px solid var(--border); }
-    .disciplina:last-child { border-bottom: none; }
+    .area { padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+    .area:last-child { border-bottom: none; }
 
-    .disciplina-header {
-      display: flex; align-items: center; gap: 1rem;
-      margin-bottom: 1.5rem;
+    .area-toggle {
+      display: flex; align-items: center; gap: 0.9rem;
+      cursor: pointer; list-style: none; user-select: none;
     }
-    .disciplina-icon {
-      width: 36px; height: 36px;
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
+    .area-toggle::-webkit-details-marker { display: none; }
+
+    .area-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: var(--bg-alt); border: 1px solid var(--border);
+      border-radius: 3px;
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--serif); font-size: 1.1rem;
-      color: var(--accent); flex-shrink: 0;
+      font-family: var(--serif); font-size: 1rem; color: var(--accent);
+      transition: background 0.2s, border-color 0.2s;
     }
-    .disciplina-name {
-      font-family: var(--serif); font-size: 1.3rem;
-      font-weight: 400; color: var(--text-strong);
-    }
+    details[open] .area-icon { background: var(--accent); color: #f5f3ee; border-color: var(--accent); }
 
-    /* ── LISTA CARDS ── */
+    .area-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--text-strong); flex: 1; }
+    .area-count { font-family: var(--mono); font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.06em; }
+    .area-chevron { font-size: 0.7rem; color: var(--text-muted); transition: transform 0.25s; }
+    details[open] .area-chevron { transform: rotate(90deg); }
+
     .listas-grid {
+      margin-top: 1.2rem;
       display: flex; flex-direction: column;
       border: 1px solid var(--border);
       border-radius: 4px; overflow: hidden;
+      animation: slideDown 0.2s ease;
     }
 
-    .lista-card {
-      background: var(--bg);
-      padding: 1.4rem 1.6rem;
-      display: grid;
-      grid-template-columns: 2.2rem 1fr auto;
-      gap: 1rem; align-items: center;
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .lista-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.3rem;
       border-bottom: 1px solid var(--border);
-      transition: background 0.15s;
+      background: var(--bg); transition: background 0.15s;
     }
-    .lista-card:last-child { border-bottom: none; }
-    .lista-card:hover { background: var(--bg-alt); }
+    .lista-row:last-child { border-bottom: none; }
+    .lista-row:hover { background: var(--bg-alt); }
 
-    .lista-num {
-      font-family: var(--mono); font-size: 0.75rem;
-      color: var(--border); font-weight: 400;
-      text-align: center;
-    }
+    .lista-num { font-family: var(--mono); font-size: 0.68rem; color: var(--border); min-width: 1.4rem; text-align: center; }
 
-    .lista-title {
-      font-size: 0.9rem; font-weight: 500;
-      color: var(--text-strong);
-      margin-bottom: 0.25rem; line-height: 1.3;
-    }
-    .lista-topics {
-      font-size: 0.8rem; color: var(--text-muted);
-      line-height: 1.5;
-    }
+    .lista-body { flex: 1; }
+    .lista-title { font-size: 0.88rem; font-weight: 500; color: var(--text-strong); line-height: 1.3; }
+    .lista-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.1rem; font-family: var(--serif); font-style: italic; }
 
-    .lista-actions {
-      display: flex; flex-direction: column;
-      align-items: flex-end; gap: 0.5rem;
-      min-width: 120px;
-    }
+    .lista-right { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
 
-    .badge {
-      font-family: var(--mono); font-size: 0.62rem;
-      letter-spacing: 0.08em; padding: 0.18rem 0.6rem;
-      border-radius: 2px; white-space: nowrap;
-    }
+    .badge { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; padding: 0.15rem 0.5rem; border-radius: 2px; white-space: nowrap; }
     .badge-done { background: rgba(74,107,77,0.12); color: var(--accent); border: 1px solid rgba(74,107,77,0.3); }
     .badge-wip  { background: rgba(160,130,80,0.1); color: #7a6030; border: 1px solid rgba(160,130,80,0.3); }
-    .badge-plan { background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); }
 
-    .pdf-links { display: flex; flex-direction: column; align-items: flex-end; gap: 0.25rem; }
-
-    .pdf-link {
-      font-family: var(--mono); font-size: 0.68rem;
-      color: var(--accent-dim); text-decoration: none;
-      letter-spacing: 0.04em; transition: color 0.2s;
-      display: flex; align-items: center; gap: 0.3rem;
-      padding: 0.2rem 0.5rem;
-      border: 1px solid transparent;
-      border-radius: 2px;
-    }
-    .pdf-link:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: rgba(74,107,77,0.06);
-    }
-    .pdf-link::before { content: '↓'; font-size: 0.6rem; }
-    .pdf-link.resolucao { color: var(--text-muted); }
-    .pdf-link.resolucao:hover { color: var(--accent); border-color: var(--accent); }
-
-    .pdf-unavailable {
+    .pdf-btns { display: flex; gap: 0.3rem; }
+    .pdf-btn {
       font-family: var(--mono); font-size: 0.65rem;
-      color: var(--border); padding: 0.2rem 0.5rem;
+      color: var(--accent-dim); text-decoration: none;
+      letter-spacing: 0.04em; padding: 0.2rem 0.5rem;
+      border: 1px solid transparent; border-radius: 2px;
+      transition: all 0.2s; white-space: nowrap;
     }
+    .pdf-btn:hover { color: var(--accent); border-color: var(--accent); background: rgba(74,107,77,0.06); }
+    .pdf-btn.res { color: var(--text-muted); }
+    .pdf-btn.res:hover { color: var(--accent); border-color: var(--accent); }
+    .pdf-btn::before { content: '↓ '; font-size: 0.6rem; }
+    .pdf-none { font-family: var(--mono); font-size: 0.62rem; color: var(--border); }
 
     .nota {
       margin-top: 2.5rem; padding: 1rem 1.4rem;
-      border-left: 2px solid var(--accent);
-      background: var(--bg-alt);
+      border-left: 2px solid var(--accent); background: var(--bg-alt);
       font-size: 0.82rem; color: var(--text-muted);
-      font-style: italic; font-family: var(--serif);
-      border-radius: 0 3px 3px 0;
+      font-style: italic; font-family: var(--serif); border-radius: 0 3px 3px 0;
     }
 
-    /* ── FOOTER ── */
     footer { border-top: 1px solid var(--border); padding: 1.8rem 0; }
-    .footer-inner {
-      max-width: 960px; margin: 0 auto; padding: 0 2rem;
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-inner span {
-      font-family: var(--mono); font-size: 0.72rem; color: var(--text-muted);
-    }
+    .footer-inner { max-width: 960px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-inner span { font-family: var(--mono); font-size: 0.72rem; color: var(--text-muted); }
     .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a {
-      font-family: var(--mono); font-size: 0.72rem;
-      color: var(--text-muted); text-decoration: none;
-      letter-spacing: 0.05em; transition: color 0.2s;
-    }
+    .footer-links a { font-family: var(--mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
     .footer-links a:hover { color: var(--accent); }
 
     @media (max-width: 700px) {
       .header-inner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
       nav { gap: 1rem; }
-      .page-hero { padding: 2rem 1.5rem 1.8rem; }
-      .content { padding: 0 1.5rem 3rem; }
-      .lista-card { grid-template-columns: 1.8rem 1fr; grid-template-rows: auto auto; }
-      .lista-actions { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; min-width: unset; margin-top: 0.5rem; }
+      .page-hero, .content { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .lista-row { flex-wrap: wrap; }
+      .lista-right { flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -235,7 +166,7 @@
       </a>
       <nav>
         <a href="index.html">início</a>
-        <a href="index.html#anotacoes">anotações</a>
+        <a href="anotacoes.html">anotações</a>
         <a href="listas.html" class="active">listas</a>
         <a href="pesquisa.html">pesquisa</a>
         <a href="index.html#projetos">projetos</a>
@@ -246,107 +177,113 @@
   <div class="page-hero">
     <p class="page-label">curso de física</p>
     <h1 class="page-title">Resoluções de Listas</h1>
-    <p class="page-sub">Enunciados e resoluções comentadas das disciplinas do curso.</p>
+    <p class="page-sub">Clique em uma disciplina para ver as listas.</p>
   </div>
 
   <div class="content">
 
     <!-- MECÂNICA QUÂNTICA I -->
-    <div class="disciplina">
-      <div class="disciplina-header">
-        <div class="disciplina-icon">ℏ</div>
-        <h2 class="disciplina-name">Mecânica Quântica I</h2>
-      </div>
+    <div class="area">
+      <details>
+        <summary class="area-toggle">
+          <div class="area-icon">ℏ</div>
+          <span class="area-title">Mecânica Quântica I</span>
+          <span class="area-count">4 listas</span>
+          <span class="area-chevron">▶</span>
+        </summary>
 
-      <div class="listas-grid">
+        <div class="listas-grid">
 
-        <div class="lista-card">
-          <div class="lista-num">01</div>
-          <div class="lista-body">
-            <div class="lista-title">Operadores Lineares e Mudança de Base</div>
-            <div class="lista-topics">Representação matricial · autovalores e autovetores · diagonalização · bases ortonormais · relação de completude</div>
-          </div>
-          <div class="lista-actions">
-            <span class="badge badge-done">concluído</span>
-            <div class="pdf-links">
-              <a href="pdfs/quantica/Primeira lista de Quântica I-2026.pdf" target="_blank" class="pdf-link">questões</a>
-              <a href="pdfs/quantica/Resolução lista 1 LaTex quantica.pdf" target="_blank" class="pdf-link resolucao">resolução</a>
+          <div class="lista-row">
+            <span class="lista-num">01</span>
+            <div class="lista-body">
+              <div class="lista-title">Operadores Lineares e Mudança de Base</div>
+              <div class="lista-desc">Autovalores, diagonalização, bases ortonormais, completude</div>
+            </div>
+            <div class="lista-right">
+              <span class="badge badge-done">concluído</span>
+              <div class="pdf-btns">
+                <a href="pdfs/quantica/Primeira lista de Quântica I-2026.pdf" target="_blank" class="pdf-btn">questões</a>
+                <a href="pdfs/quantica/Resolução lista 1 LaTex quantica.pdf" target="_blank" class="pdf-btn res">resolução</a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="lista-card">
-          <div class="lista-num">02</div>
-          <div class="lista-body">
-            <div class="lista-title">Álgebra de Operadores e Produto Externo</div>
-            <div class="lista-topics">Comutadores · álgebra de bra-kets · operadores Hermitiano e unitário · produto externo |α⟩⟨β|</div>
-          </div>
-          <div class="lista-actions">
-            <span class="badge badge-done">concluído</span>
-            <div class="pdf-links">
-              <a href="pdfs/quantica/Segunda lista de Quântica I-2026.pdf" target="_blank" class="pdf-link">questões</a>
-              <a href="pdfs/quantica/Resolução lista 2 (mecanica quantica).pdf" target="_blank" class="pdf-link resolucao">resolução</a>
+          <div class="lista-row">
+            <span class="lista-num">02</span>
+            <div class="lista-body">
+              <div class="lista-title">Álgebra de Operadores e Produto Externo</div>
+              <div class="lista-desc">Comutadores, bra-kets, Hermitiano, unitário, produto externo |α⟩⟨β|</div>
+            </div>
+            <div class="lista-right">
+              <span class="badge badge-done">concluído</span>
+              <div class="pdf-btns">
+                <a href="pdfs/quantica/Segunda lista de Quântica I-2026.pdf" target="_blank" class="pdf-btn">questões</a>
+                <a href="pdfs/quantica/Resolução lista 2 (mecanica quantica).pdf" target="_blank" class="pdf-btn res">resolução</a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="lista-card">
-          <div class="lista-num">03</div>
-          <div class="lista-body">
-            <div class="lista-title">Lista 3</div>
-            <div class="lista-topics">—</div>
-          </div>
-          <div class="lista-actions">
-            <span class="badge badge-wip">em andamento</span>
-            <div class="pdf-links">
-              <span class="pdf-unavailable">em breve</span>
+          <div class="lista-row">
+            <span class="lista-num">03</span>
+            <div class="lista-body">
+              <div class="lista-title">Lista 3</div>
+              <div class="lista-desc">—</div>
+            </div>
+            <div class="lista-right">
+              <span class="badge badge-wip">em andamento</span>
+              <span class="pdf-none">em breve</span>
             </div>
           </div>
-        </div>
 
-        <div class="lista-card">
-          <div class="lista-num">04</div>
-          <div class="lista-body">
-            <div class="lista-title">Grupos de Rotações, Continuidade e Barreiras de Potencial</div>
-            <div class="lista-topics">SO(3) e SU(2) · matrizes de Pauli · geradores infinitesimais · equação de continuidade · barreira degrau · oscilador harmônico</div>
-          </div>
-          <div class="lista-actions">
-            <span class="badge badge-wip">em andamento</span>
-            <div class="pdf-links">
-              <a href="pdfs/quantica/Quarta lista de Quântica I-2026 (1).pdf" target="_blank" class="pdf-link">questões</a>
-              <span class="pdf-unavailable">resolução em breve</span>
+          <div class="lista-row">
+            <span class="lista-num">04</span>
+            <div class="lista-body">
+              <div class="lista-title">Grupos de Rotações, Continuidade e Barreiras</div>
+              <div class="lista-desc">SO(3), SU(2), Pauli, equação de continuidade, oscilador harmônico</div>
+            </div>
+            <div class="lista-right">
+              <span class="badge badge-wip">em andamento</span>
+              <div class="pdf-btns">
+                <a href="pdfs/quantica/Quarta lista de Quântica I-2026 (1).pdf" target="_blank" class="pdf-btn">questões</a>
+                <span class="pdf-none">resolução em breve</span>
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
+        </div>
+      </details>
     </div>
 
     <!-- RELATIVIDADE RESTRITA -->
-    <div class="disciplina">
-      <div class="disciplina-header">
-        <div class="disciplina-icon">η</div>
-        <h2 class="disciplina-name">Relatividade Restrita</h2>
-      </div>
+    <div class="area">
+      <details>
+        <summary class="area-toggle">
+          <div class="area-icon">η</div>
+          <span class="area-title">Relatividade Restrita</span>
+          <span class="area-count">1 lista</span>
+          <span class="area-chevron">▶</span>
+        </summary>
 
-      <div class="listas-grid">
+        <div class="listas-grid">
 
-        <div class="lista-card">
-          <div class="lista-num">01</div>
-          <div class="lista-body">
-            <div class="lista-title">Dilatação do Tempo, Contração do Espaço e Formalismo Tensorial</div>
-            <div class="lista-topics">Tempo próprio · métrica de Minkowski · paradoxo dos gêmeos · efeito Doppler relativístico · transformações de Lorentz · vetores e covetores</div>
-          </div>
-          <div class="lista-actions">
-            <span class="badge badge-done">concluído</span>
-            <div class="pdf-links">
-              <a href="pdfs/restrita/lista 1 restrita.pdf" target="_blank" class="pdf-link">questões</a>
-              <a href="pdfs/restrita/resolução lista 1 (relatividade restrita).pdf" target="_blank" class="pdf-link resolucao">resolução</a>
+          <div class="lista-row">
+            <span class="lista-num">01</span>
+            <div class="lista-body">
+              <div class="lista-title">Dilatação do Tempo, Contração do Espaço e Formalismo Tensorial</div>
+              <div class="lista-desc">Tempo próprio, Minkowski, paradoxo dos gêmeos, Doppler, Lorentz, vetores e covetores</div>
+            </div>
+            <div class="lista-right">
+              <span class="badge badge-done">concluído</span>
+              <div class="pdf-btns">
+                <a href="pdfs/restrita/lista 1 restrita.pdf" target="_blank" class="pdf-btn">questões</a>
+                <a href="pdfs/restrita/resolução lista 1 (relatividade restrita).pdf" target="_blank" class="pdf-btn res">resolução</a>
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
+        </div>
+      </details>
     </div>
 
     <div class="nota">
