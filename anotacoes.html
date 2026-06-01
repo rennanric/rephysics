@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anotações · rephysics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:          #f5f3ee;
+      --bg-alt:      #edeae3;
+      --surface:     #e5e1d8;
+      --border:      #c8c4b8;
+      --accent:      #4a6b4d;
+      --accent-dim:  #3a5a3d;
+      --text:        #1e1c18;
+      --text-muted:  #7a7668;
+      --text-strong: #0d0d0b;
+      --mono:        'Inconsolata', monospace;
+      --serif:       'EB Garamond', Georgia, serif;
+      --sans:        'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--accent); color: #f5f3ee; }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(245,243,238,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 960px; margin: 0 auto;
+      padding: 0.9rem 2rem;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem;
+    }
+    .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .logo-symbol { font-family: var(--serif); font-size: 1.5rem; color: var(--accent); line-height: 1; }
+    .logo-name { font-family: var(--mono); font-size: 0.9rem; color: var(--text-strong); letter-spacing: 0.08em; }
+    nav { display: flex; gap: 1.8rem; flex-wrap: wrap; }
+    nav a {
+      font-family: var(--mono); font-size: 0.75rem;
+      color: var(--text-muted); text-decoration: none;
+      letter-spacing: 0.06em; transition: color 0.2s;
+    }
+    nav a:hover, nav a.active { color: var(--accent); }
+
+    /* ── HERO ── */
+    .page-hero {
+      max-width: 960px; margin: 0 auto;
+      padding: 3.5rem 2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-label {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--accent); letter-spacing: 0.2em;
+      text-transform: uppercase; margin-bottom: 0.7rem;
+    }
+    .page-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400; color: var(--text-strong);
+      line-height: 1.1; letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+    .page-sub {
+      font-size: 0.9rem; color: var(--text-muted);
+      font-style: italic; font-family: var(--serif);
+    }
+
+    /* ── CONTENT ── */
+    .content { max-width: 960px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+    /* ── AREA (disciplina) ── */
+    .area { padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+    .area:last-child { border-bottom: none; }
+
+    /* cabeçalho clicável da área */
+    .area-toggle {
+      display: flex; align-items: center; gap: 0.9rem;
+      cursor: pointer; list-style: none;
+      user-select: none; padding: 0;
+    }
+    .area-toggle::-webkit-details-marker { display: none; }
+
+    .area-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: var(--bg-alt); border: 1px solid var(--border);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 1rem; color: var(--accent);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    details[open] .area-icon {
+      background: var(--accent);
+      color: #f5f3ee; border-color: var(--accent);
+    }
+
+    .area-title {
+      font-family: var(--serif); font-size: 1.25rem;
+      font-weight: 400; color: var(--text-strong); flex: 1;
+    }
+
+    .area-count {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--text-muted); letter-spacing: 0.06em;
+    }
+
+    .area-chevron {
+      font-size: 0.7rem; color: var(--text-muted);
+      transition: transform 0.25s;
+    }
+    details[open] .area-chevron { transform: rotate(90deg); }
+
+    /* ── NOTAS GRID ── */
+    .notas-grid {
+      margin-top: 1.2rem;
+      display: flex; flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+      animation: slideDown 0.2s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .nota-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.3rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      transition: background 0.15s;
+    }
+    .nota-row:last-child { border-bottom: none; }
+    .nota-row:hover { background: var(--bg-alt); }
+
+    .nota-num {
+      font-family: var(--mono); font-size: 0.68rem;
+      color: var(--border); min-width: 1.4rem; text-align: center;
+    }
+
+    .nota-body { flex: 1; }
+    .nota-title {
+      font-size: 0.88rem; font-weight: 500;
+      color: var(--text-strong); line-height: 1.3;
+    }
+    .nota-desc {
+      font-size: 0.78rem; color: var(--text-muted);
+      margin-top: 0.1rem; line-height: 1.4;
+      font-family: var(--serif); font-style: italic;
+    }
+
+    .pdf-btn {
+      font-family: var(--mono); font-size: 0.65rem;
+      color: var(--accent-dim); text-decoration: none;
+      letter-spacing: 0.04em;
+      padding: 0.22rem 0.55rem;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      transition: all 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .pdf-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(74,107,77,0.06);
+    }
+    .pdf-btn::before { content: '↓ '; font-size: 0.6rem; }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 1.8rem 0; }
+    .footer-inner {
+      max-width: 960px; margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-inner span { font-family: var(--mono); font-size: 0.72rem; color: var(--text-muted); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-family: var(--mono); font-size: 0.72rem;
+      color: var(--text-muted); text-decoration: none;
+      letter-spacing: 0.05em; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    @media (max-width: 700px) {
+      .header-inner { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      nav { gap: 1rem; }
+      .page-hero, .content { padding-left: 1.5rem; padding-right: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-symbol">⟨ψ|</span>
+        <span class="logo-name">rephysics</span>
+      </a>
+      <nav>
+        <a href="index.html">início</a>
+        <a href="anotacoes.html" class="active">anotações</a>
+        <a href="listas.html">listas</a>
+        <a href="pesquisa.html">pesquisa</a>
+        <a href="index.html#projetos">projetos</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-label">notas de aula</p>
+    <h1 class="page-title">Anotações</h1>
+    <p class="page-sub">Registros das aulas — clique em uma área para expandir os tópicos.</p>
+  </div>
+
+  <div class="content">
+
+    <!-- ══ RELATIVIDADE GERAL ══ -->
+    <div class="area">
+      <details>
+        <summary class="area-toggle">
+          <div class="area-icon">g<sub>μν</sub></div>
+          <span class="area-title">Relatividade Geral</span>
+          <span class="area-count">9 notas</span>
+          <span class="area-chevron">▶</span>
+        </summary>
+
+        <div class="notas-grid">
+
+          <div class="nota-row">
+            <span class="nota-num">01</span>
+            <div class="nota-body">
+              <div class="nota-title">Revisão de Tensor, Covetor e Espaços</div>
+              <div class="nota-desc">Espaços vetoriais, transformações, covariância e contravariância</div>
+            </div>
+            <a href="pdfs/anotacoes/relatividade-geral/Revisão de tensor,covetor e espaços.pdf" target="_blank" class="pdf-btn">abrir</a>
+          </div>
+
+          <div class="nota-row">
+            <span class="nota-num">02</span>
+            <div class="nota-body">
+              <div class="nota-title">Vetor como Derivação, Bases Duais e 1-formas</div>
+              <div class="nota-desc">Interpretação geométrica de vetores tangentes e espaço dual</div>
+            </div>
+            <a href="pdfs/anotacoes/relatividade-geral/vetor como derivacao, bases duais e 1-formas.pdf" target="_blank" class="pdf-btn">abrir</a>
+          </div>
+
+          <div class="nota-row">
+            <span class="nota-num">03</span>
+            <div class="nota-body">
+              <div class="nota-title">Métrica e Intervalo Invariante</div>
+              <div class="nota-desc">Tensor métrico, levantamento e abaixamento de índices, invariância</div>
+            </div>
+            <a href="pdfs/anotacoes/relatividade-geral/Metrica e intervalo invariante.pdf" target="_blank" class="pdf-btn">abrir</a>
+          </div>
+
+          <div class="nota-row">
+            <span class="nota-num">04</span>
+            <div class="nota-body">
+              <div class="nota-title">Tensor e Derivada Covariante — Transformação</div>
+              <div class="nota-desc">Como tensores se transformam e a derivada covariante como tensor</div>
+            </div>
+            <a href="pdfs/anotacoes/relatividade-geral/Tensor e derivada covariante ser um tensor e tranf.pdf" target="_blank" class="pdf-btn">abrir</a>
+          </div>
+
+          <div class="nota-row">
+            <span class="nota-num">05</span>
+            <div class="nota-body">
+              <div class="nota-title">Lei de Transformação da Conexão</div>
+              <div class="nota-desc">Símbolos de Christoffel e sua regra de transformação não tensorial</div>
+            </div>
+            <a href="pdfs/anotacoes/relatividade-geral/Lei de transf da conexão.pdf" target="_blank" class="pdf-btn">abrir</a>
+          </div>
+
+          <div class="nota-row">
+            <span class="nota-num">06</span>
+            <div class="nota-body">
+              <div class="nota-title">Derivada Covariante e Divergente</div>
+              <div class="nota-desc">Derivada covariante de tensores de rank arbitrário, divergente covariante</div>
+            </div>
+            <a href="pdfs/anotacoes/relatividade-geral/Derivada covariante e divergente.pdf" target="_blank" class="pdf-btn">abrir</a>
+          </div>
+
+          <div class="nota-row">
+            <span class="nota-num">07</span>
+            <div class="nota-body">
+              <div class="nota-title">Equação de uma Partícula Livre sobre uma Superfície</div>
+              <div class="nota-desc">Geodésicas e equação do movimento em variedades curvas</div>
+            </div>
+            <a href="pdfs/anotacoes/relatividade-geral/Eq de uma particula livre sobre uma superficie.pdf" target="_blank" class="pdf-btn">abrir</a>
+          </div>
+
+          <div class="nota-row">
+            <span class="nota-num">08</span>
+            <div class="nota-body">
+              <div class="nota-title">Aceleração de Partícula Livre e Derivada Covariante da Métrica</div>
+              <div class="nota-desc">Condição de compatibilidade da métrica e transporte paralelo</div>
+            </div>
+            <a href="pdfs/anotacoes/relatividade-geral/Aceleracao de particula livre e derivada covariante da metrica.pdf" target="_blank" class="pdf-btn">abrir</a>
+          </div>
+
+          <div class="nota-row">
+            <span class="nota-num">09</span>
+            <div class="nota-body">
+              <div class="nota-title">Tensor de Riemann — Definição Algébrica</div>
+              <div class="nota-desc">Curvatura via comutador de derivadas covariantes, simetrias do tensor</div>
+            </div>
+            <a href="pdfs/anotacoes/relatividade-geral/Tensor de riemman (def algebrica).pdf" target="_blank" class="pdf-btn">abrir</a>
+          </div>
+
+        </div>
+      </details>
+    </div>
+
+    <!-- ══ PRÓXIMAS ÁREAS (placeholder) ══ -->
+    <div class="area">
+      <details>
+        <summary class="area-toggle">
+          <div class="area-icon">ℏ</div>
+          <span class="area-title">Mecânica Quântica</span>
+          <span class="area-count">em breve</span>
+          <span class="area-chevron">▶</span>
+        </summary>
+        <div class="notas-grid">
+          <div class="nota-row">
+            <span class="nota-num">—</span>
+            <div class="nota-body">
+              <div class="nota-title" style="color:var(--text-muted); font-weight:400;">Notas sendo organizadas...</div>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <div class="area">
+      <details>
+        <summary class="area-toggle">
+          <div class="area-icon">∇</div>
+          <span class="area-title">Eletromagnetismo</span>
+          <span class="area-count">em breve</span>
+          <span class="area-chevron">▶</span>
+        </summary>
+        <div class="notas-grid">
+          <div class="nota-row">
+            <span class="nota-num">—</span>
+            <div class="nota-body">
+              <div class="nota-title" style="color:var(--text-muted); font-weight:400;">Notas sendo organizadas...</div>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span>rephysics © 2025</span>
+      <div class="footer-links">
+        <a href="https://instagram.com/rephysics" target="_blank">instagram</a>
+        <a href="https://github.com/rennanric" target="_blank">github</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
