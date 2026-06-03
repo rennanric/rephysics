@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rephysics</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+  
 </head>
 <body>
-
 
   <!-- HEADER -->
   <header>
@@ -18,11 +18,11 @@
         <span class="logo-name">rephysics</span>
       </div>
       <nav>
-        <a href="#sobre">sobre</a>
+        <a href="pages/sobre.html">sobre</a>
         <a href="pages/anotacoes.html">anotações</a>
         <a href="pages/listas.html">listas</a>
         <a href="#projetos">projetos</a>
-        <a href="#quero-fazer">em progresso</a>
+        <a href="#quero-fazer">explorar</a>
         <a href="pages/pesquisa.html">pesquisa</a>
       </nav>
     </div>
@@ -80,25 +80,25 @@
           <div class="card-tag">mecânica quântica</div>
           <h3>Equação de Schrödinger</h3>
           <p>Derivação, interpretação probabilística e soluções para poço quadrado infinito.</p>
-          <a href="#" class="card-link">ver anotação →</a>
+          <a href="pages/anotacoes.html" class="card-link">ver anotação →</a>
         </div>
         <div class="card">
           <div class="card-tag">mecânica clássica</div>
           <h3>Formalismo Lagrangiano</h3>
           <p>Princípio da mínima ação, equações de Euler-Lagrange e exemplos.</p>
-          <a href="#" class="card-link">ver anotação →</a>
+          <a href="pages/anotacoes.html" class="card-link">ver anotação →</a>
         </div>
         <div class="card">
           <div class="card-tag">eletromagnetismo</div>
           <h3>Equações de Maxwell</h3>
           <p>Forma diferencial, lei de Gauss, Faraday, Ampère-Maxwell.</p>
-          <a href="#" class="card-link">ver anotação →</a>
+          <a href="pages/anotacoes.html" class="card-link">ver anotação →</a>
         </div>
         <div class="card">
           <div class="card-tag">relatividade especial</div>
           <h3>Transformações de Lorentz</h3>
           <p>Dilatação do tempo, contração do espaço e invariância do intervalo.</p>
-          <a href="#" class="card-link">ver anotação →</a>
+          <a href="pages/anotacoes.html" class="card-link">ver anotação →</a>
         </div>
       </div>
     </div>
@@ -108,20 +108,13 @@
   <section id="listas" class="section">
     <div class="section-inner">
       <h2 class="section-title"><span class="accent">§3</span> Resoluções de Listas</h2>
-      <p class="section-desc">Listas do curso — enunciados e resoluções comentadas.</p>
+      <p class="section-desc">Listas do curso — questões e resoluções comentadas.</p>
 
-      <!-- Mecânica Quântica I -->
       <div class="list-group">
         <div class="list-group-header">Mecânica Quântica I</div>
         <table class="list-table">
           <thead>
-            <tr>
-              <th>#</th>
-              <th>Assunto</th>
-              <th>Enunciado</th>
-              <th>Resolução</th>
-              <th>Status</th>
-            </tr>
+            <tr><th>#</th><th>Assunto</th><th>Questões</th><th>Resolução</th><th>Status</th></tr>
           </thead>
           <tbody>
             <tr>
@@ -156,18 +149,11 @@
         </table>
       </div>
 
-      <!-- Relatividade Restrita -->
       <div class="list-group">
         <div class="list-group-header">Relatividade Restrita</div>
         <table class="list-table">
           <thead>
-            <tr>
-              <th>#</th>
-              <th>Assunto</th>
-              <th>Enunciado</th>
-              <th>Resolução</th>
-              <th>Status</th>
-            </tr>
+            <tr><th>#</th><th>Assunto</th><th>Questões</th><th>Resolução</th><th>Status</th></tr>
           </thead>
           <tbody>
             <tr>
@@ -217,19 +203,57 @@
     </div>
   </section>
 
-  <!-- QUERO FAZER -->
+  <!-- QUERO EXPLORAR — estilo blog -->
   <section id="quero-fazer" class="section">
     <div class="section-inner">
       <h2 class="section-title"><span class="accent">§5</span> O que quero explorar</h2>
-      <p class="section-desc">Tópicos e projetos que quero estudar — um mapa do que vem por aí.</p>
-      <ul class="todo-list">
-        <li><span class="todo-icon">○</span> Teoria Quântica de Campos — introdução pelo formalismo de path integrals</li>
-        <li><span class="todo-icon">○</span> Relatividade Geral — geometria diferencial e equações de Einstein</li>
-        <li><span class="todo-icon">○</span> Física Estatística — ensemble canônico e transições de fase</li>
-        <li><span class="todo-icon">○</span> Simulação de partículas com o método de Monte Carlo</li>
-        <li><span class="todo-icon">○</span> Grupos de Lie na física — SU(2), SU(3) e suas representações</li>
-        <li><span class="todo-icon">○</span> Computação quântica — circuitos e algoritmos de Grover e Shor</li>
-      </ul>
+      <p class="section-desc">Tópicos que quero estudar — um mapa do que vem por aí.</p>
+
+      <div class="explore-grid">
+
+        <div class="explore-card">
+          <div class="explore-tag">teoria de campos</div>
+          <div class="explore-title">Teoria Quântica de Campos</div>
+          <div class="explore-desc">Introdução pelo formalismo de path integrals. Quantização do campo escalar, eletrodinâmica quântica e diagramas de Feynman.</div>
+          <div class="explore-status soon">● em breve</div>
+        </div>
+
+        <div class="explore-card">
+          <div class="explore-tag">relatividade geral</div>
+          <div class="explore-title">Relatividade Geral</div>
+          <div class="explore-desc">Geometria diferencial, tensor de Riemann e equações de Einstein. Soluções de Schwarzschild e buracos negros.</div>
+          <div class="explore-status soon">● em breve</div>
+        </div>
+
+        <div class="explore-card">
+          <div class="explore-tag">física estatística</div>
+          <div class="explore-title">Física Estatística</div>
+          <div class="explore-desc">Ensemble canônico, grande canônico e transições de fase. Modelo de Ising e grupo de renormalização.</div>
+          <div class="explore-status">○ planejado</div>
+        </div>
+
+        <div class="explore-card">
+          <div class="explore-tag">computação</div>
+          <div class="explore-title">Método de Monte Carlo</div>
+          <div class="explore-desc">Simulação de sistemas de partículas. Algoritmo de Metropolis e aplicações em física estatística e mecânica quântica.</div>
+          <div class="explore-status">○ planejado</div>
+        </div>
+
+        <div class="explore-card">
+          <div class="explore-tag">álgebra</div>
+          <div class="explore-title">Grupos de Lie na Física</div>
+          <div class="explore-desc">SU(2), SU(3) e suas representações. Aplicações em física de partículas e modelo padrão.</div>
+          <div class="explore-status">○ planejado</div>
+        </div>
+
+        <div class="explore-card">
+          <div class="explore-tag">computação quântica</div>
+          <div class="explore-title">Computação Quântica</div>
+          <div class="explore-desc">Circuitos quânticos, algoritmos de Grover e Shor. Fundamentos de informação quântica e emaranhamento.</div>
+          <div class="explore-status">○ planejado</div>
+        </div>
+
+      </div>
     </div>
   </section>
 
