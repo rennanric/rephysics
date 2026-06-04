@@ -556,6 +556,279 @@ footer {
 }
 
 /* ============================================
+   PAGE HERO (para páginas)
+   ============================================ */
+.page-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+
+.page-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--text-strong);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+}
+
+.page-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ============================================
+   CONTENT (páginas)
+   ============================================ */
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem 5rem;
+}
+
+/* ============================================
+   AREA (disciplinas/notas)
+   ============================================ */
+.area {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.area:last-child {
+  border-bottom: none;
+}
+
+.area-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  padding: 0;
+}
+
+.area-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.area-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--accent);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+details[open] .area-icon {
+  background: var(--accent);
+  color: #f5f3ee;
+  border-color: var(--accent);
+}
+
+.area-title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-strong);
+  flex: 1;
+}
+
+.area-count {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+.area-chevron {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  transition: transform 0.25s;
+}
+
+details[open] .area-chevron {
+  transform: rotate(90deg);
+}
+
+/* ============================================
+   LISTAS/NOTAS GRID
+   ============================================ */
+.listas-grid,
+.notas-grid {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lista-row,
+.nota-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.3rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  transition: background 0.15s;
+}
+
+.lista-row:last-child,
+.nota-row:last-child {
+  border-bottom: none;
+}
+
+.lista-row:hover,
+.nota-row:hover {
+  background: var(--bg-alt);
+}
+
+.lista-num,
+.nota-num {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--border);
+  min-width: 1.4rem;
+  text-align: center;
+}
+
+.lista-body,
+.nota-body {
+  flex: 1;
+}
+
+.lista-title,
+.nota-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-strong);
+  line-height: 1.3;
+}
+
+.lista-desc,
+.nota-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+.lista-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+}
+
+.badge {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge-done {
+  background: rgba(74, 107, 77, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(74, 107, 77, 0.3);
+}
+
+.badge-wip {
+  background: rgba(160, 130, 80, 0.1);
+  color: #7a6030;
+  border: 1px solid rgba(160, 130, 80, 0.3);
+}
+
+.pdf-btns {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+}
+
+.pdf-btn {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--accent-dim);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.pdf-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(74, 107, 77, 0.06);
+}
+
+.pdf-btn::before {
+  content: '↓ ';
+  font-size: 0.6rem;
+}
+
+.pdf-none {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--border);
+}
+
+.nota {
+  margin-top: 2.5rem;
+  padding: 1rem 1.4rem;
+  border-left: 2px solid var(--accent);
+  background: var(--bg-alt);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+  font-family: var(--serif);
+  border-radius: 0 3px 3px 0;
+}
+
+/* ============================================
    LIST GROUPS (disciplinas)
    ============================================ */
 .list-group {
@@ -576,7 +849,6 @@ footer {
   margin-bottom: 0;
   border-bottom: 1px solid var(--accent);
   display: inline-block;
-  margin-bottom: 0;
 }
 
 .list-group .list-table {
@@ -587,6 +859,7 @@ footer {
 .list-group .list-table thead tr {
   background: var(--bg-alt);
 }
+
 /* ============================================
    EXPLORE CARDS (§5 — O que quero explorar)
    ============================================ */
@@ -609,7 +882,7 @@ footer {
 }
 
 .explore-card:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
   transform: translateY(-2px);
 }
 
@@ -644,38 +917,6 @@ footer {
   margin-top: 0.3rem;
 }
 
-.explore-status.soon { color: #b09060; }
-
-/* ============================================
-   BADGE FIX — não quebrar linha
-   ============================================ */
-.badge {
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* lista-right: badge + botões na mesma linha */
-.lista-right {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  flex-shrink: 0;
-  flex-wrap: nowrap;
-}
-
-.pdf-btns {
-  display: flex;
-  gap: 0.3rem;
-  flex-wrap: nowrap;
-}
-
-/* ============================================
-   AREA TITLE — matéria em negrito
-   ============================================ */
-.area-title {
-  font-family: var(--serif);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--text-strong);
-  flex: 1;
+.explore-status.soon {
+  color: #b09060;
 }
