@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relatividade Geral · rephysics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-symbol">⟨ψ|</span>
+        <span class="logo-name">rephysics</span>
+      </div>
+      <nav>
+        <a href="../index.html">início</a>
+        <a href="sobre.html">sobre</a>
+        <a href="anotacoes.html">anotações</a>
+        <a href="listas.html">listas</a>
+        <a href="#projetos">projetos</a>
+        <a href="pesquisa.html">pesquisa</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <p class="page-label">anotações de aula</p>
+    <h1 class="page-title">Relatividade Geral</h1>
+    <p class="page-sub">A gravitação como geometria do espaço-tempo — equações de Einstein, soluções e aplicações astrofísicas.</p>
+  </div>
+
+  <div class="content">
+
+    <section class="section">
+      <h2 class="section-title">Anotações</h2>
+      <div class="notas-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+
+        <div class="nota-card">
+          <div class="nota-header">
+            <span class="nota-num">01</span>
+            <h3 class="nota-title">Revisão de Tensor, Covetor e Espaços</h3>
+          </div>
+          <a href="../assets/pdfs/anotações/relatividade-geral/Revisão de tensor,covetor e espaços.pdf" target="_blank" class="pdf-btn">abrir</a>
+        </div>
+
+        <div class="nota-card">
+          <div class="nota-header">
+            <span class="nota-num">02</span>
+            <h3 class="nota-title">Vetor como Derivação, Bases Duais e 1-formas</h3>
+          </div>
+          <a href="../assets/pdfs/anotações/relatividade-geral/vetor como derivacao, bases duais e 1-formas.pdf" target="_blank" class="pdf-btn">abrir</a>
+        </div>
+
+        <div class="nota-card">
+          <div class="nota-header">
+            <span class="nota-num">03</span>
+            <h3 class="nota-title">Métrica e Intervalo Invariante</h3>
+          </div>
+          <a href="../assets/pdfs/anotações/relatividade-geral/Metrica e intervalo invariante.pdf" target="_blank" class="pdf-btn">abrir</a>
+        </div>
+
+        <div class="nota-card">
+          <div class="nota-header">
+            <span class="nota-num">04</span>
+            <h3 class="nota-title">Tensor e Derivada Covariante — Transformação</h3>
+          </div>
+          <a href="../assets/pdfs/anotações/relatividade-geral/Tensor e derivada covariante ser um tensor e tranf.pdf" target="_blank" class="pdf-btn">abrir</a>
+        </div>
+
+        <div class="nota-card">
+          <div class="nota-header">
+            <span class="nota-num">05</span>
+            <h3 class="nota-title">Lei de Transformação da Conexão</h3>
+          </div>
+          <a href="../assets/pdfs/anotações/relatividade-geral/Lei de transf da conexão.pdf" target="_blank" class="pdf-btn">abrir</a>
+        </div>
+
+        <div class="nota-card">
+          <div class="nota-header">
+            <span class="nota-num">06</span>
+            <h3 class="nota-title">Derivada Covariante e Divergente</h3>
+          </div>
+          <a href="../assets/pdfs/anotações/relatividade-geral/Derivada covariante e divergente.pdf" target="_blank" class="pdf-btn">abrir</a>
+        </div>
+
+        <div class="nota-card">
+          <div class="nota-header">
+            <span class="nota-num">07</span>
+            <h3 class="nota-title">Tensor de Riemann (Def. Algébrica)</h3>
+          </div>
+          <a href="../assets/pdfs/anotações/relatividade-geral/Tensor de riemman (def algebrica).pdf" target="_blank" class="pdf-btn">abrir</a>
+        </div>
+
+        <div class="nota-card">
+          <div class="nota-header">
+            <span class="nota-num">08</span>
+            <h3 class="nota-title">Aceleração de Partícula Livre e Derivada Covariante da Métrica</h3>
+          </div>
+          <a href="../assets/pdfs/anotações/relatividade-geral/Aceleracao de particula livre e derivada covariante da metrica.pdf" target="_blank" class="pdf-btn">abrir</a>
+        </div>
+
+        <div class="nota-card">
+          <div class="nota-header">
+            <span class="nota-num">09</span>
+            <h3 class="nota-title">Eq. de uma Partícula Livre sobre uma Superfície</h3>
+          </div>
+          <a href="../assets/pdfs/anotações/relatividade-geral/Eq de uma particula livre sobre uma superficie.pdf" target="_blank" class="pdf-btn">abrir</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Conceitos Fundamentais</h2>
+      <div class="prose">
+        <p>
+          A Relatividade Geral é a descrição geométrica da gravitação. Ao contrário da Relatividade Restrita, que trata apenas referenciais inerciais, a RG incorpora gravitação através da curvatura do espaço-tempo.
+        </p>
+        <p>
+          <strong>Princípio equivalência:</strong> Não há diferença local entre um campo gravitacional e uma aceleração — ambos estão relacionados à curvatura do espaço-tempo.
+        </p>
+        <h3>Estrutura da teoria:</h3>
+        <ul style="margin-left: 1.5rem; line-height: 1.8;">
+          <li><strong>Geometria diferencial</strong> — Variedades, conexões, curvatura</li>
+          <li><strong>Tensor de Riemann</strong> — Mede a curvatura do espaço-tempo</li>
+          <li><strong>Equações de Einstein</strong> — Gμν + Λgμν = (8πG/c⁴)Tμν</li>
+          <li><strong>Soluções exactas</strong> — Schwarzschild, Kerr, FLRW, Reissner-Nordström</li>
+          <li><strong>Astrofísica relativista</strong> — Buracos negros, ondas gravitacionais, cosmologia</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Referências Bibliográficas</h2>
+      <div class="references">
+        <div class="ref-item">
+          <strong>Carroll</strong> — "Spacetime and Geometry: An Introduction to General Relativity"
+          <p>Moderna, pedagogicamente excelente. Cobre desde geometria diferencial até buracos negros e cosmologia.</p>
+        </div>
+        <div class="ref-item">
+          <strong>Wald</strong> — "General Relativity"
+          <p>Rigoroso e completo. O padrão para aprendizado em nível de pós-graduação.</p>
+        </div>
+        <div class="ref-item">
+          <strong>Misner, Thorne & Wheeler</strong> — "Gravitation"
+          <p>O "bible" da RG — enciclopédico, com abordagem física profunda. Denso mas inestimável.</p>
+        </div>
+        <div class="ref-item">
+          <strong>Landau & Lifshitz</strong> — "The Classical Theory of Fields" (Cap. 11-14)
+          <p>Conciso e elegante, com ênfase em soluções físicas.</p>
+        </div>
+        <div class="ref-item">
+          <strong>d'Inverno</strong> — "Introducing Einstein's Relativity"
+          <p>Abordagem geométrica clara, muito adequada para iniciantes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">O que você precisa saber antes</h2>
+      <div class="prereq">
+        <ul style="margin-left: 1.5rem; line-height: 1.8;">
+          <li><strong>Relatividade Especial sólida</strong> — Espaço de Minkowski, 4-vetores, covariância</li>
+          <li><strong>Análise real multivariável</strong> — Cálculo em manifolds (derivadas, gradientes)</li>
+          <li><strong>Álgebra linear avançada</strong> — Espaços vetoriais, transformações lineares, autovalores</li>
+          <li><strong>Equações diferenciais parciais</strong> — Métodos de resolução, separação de variáveis</li>
+          <li><strong>Geometria diferencial básica</strong> — Curvas, superfícies, métrica (recomendado)</li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="mono">rephysics © 2025</span>
+      <div class="footer-links">
+        <a href="https://instagram.com/rephysics" target="_blank">instagram</a>
+        <a href="https://www.youtube.com/@Rephysicss" target="_blank">youtube</a>
+        <a href="https://github.com/rennanric" target="_blank">github</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

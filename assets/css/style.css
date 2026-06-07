@@ -647,6 +647,14 @@ details[open] .area-icon {
   border-color: var(--accent);
 }
 
+details[open] .area-title {
+  font-size: 1.45rem;
+}
+
+details[open] .area-count {
+  font-size: 0.75rem;
+}
+
 .area-title {
   font-family: var(--serif);
   font-size: 1.25rem;
@@ -919,4 +927,97 @@ details[open] .area-chevron {
 
 .explore-status.soon {
   color: #b09060;
+}
+
+/* ============================================
+   NOTA CARDS (páginas de tópicos individuais)
+   ============================================ */
+.nota-card {
+  border: 1px solid var(--border);
+  padding: 1.6rem;
+  background: var(--bg);
+  border-radius: 4px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nota-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  transform: translateY(-2px);
+}
+
+.nota-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.nota-num {
+  font-family: var(--mono);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.nota-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-strong);
+  margin: 0;
+}
+
+.nota-desc {
+  font-size: 0.95rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ============================================
+   REFERENCES & RESOURCES (páginas de tópicos)
+   ============================================ */
+.references,
+.resources,
+.prereq {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.ref-item,
+.resource-item {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.ref-item strong,
+.resource-item strong {
+  color: var(--text-strong);
+  font-family: var(--serif);
+}
+
+.ref-item p,
+.resource-item p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+.prereq ul {
+  margin-left: 1.5rem;
+}
+
+.prereq li {
+  margin-bottom: 0.8rem;
+}
+
+.prereq strong {
+  color: var(--text-strong);
 }
